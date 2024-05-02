@@ -32,6 +32,7 @@ import gameContext from "../store/gameContext";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TrailerPlay from "./TrailerPlay";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Button } from "react-bootstrap";
 const GameComponent = ({
   game,
   title,
@@ -49,12 +50,18 @@ const GameComponent = ({
   userId,
   onEdit,
   onFav,
+  onAddToCart,
   onLike,
+  onCart,
+  videoUrl,
   productId,
+  toggleVideo,
+  active
 }) => {
   const login = useContext(LoginContext);
-  const { library, setLibrary, bag, setBag } = useContext(AppContext);
+  // const { library, setLibrary, bag, setBag } = useContext(AppContext);
   const to = useLocation();
+  const { cart, setCart, library, setLibrary } = useContext(ShopContext);
   const navigate = useNavigate();
   const [cartMessage, setCartMessage] = useState('');
   const GameFav = useDataCard();
@@ -69,6 +76,10 @@ const GameComponent = ({
   const handleFavClick = () => {
     onFav(id);
   };
+  const handleCartClick = () => {
+    onAddToCart(id);
+  };
+
   const handlePhone = () => {
     toast.success('📞 Ringing...', {
       position: "top-center",
@@ -101,12 +112,12 @@ const GameComponent = ({
     setLibrary(library.filter(item => item._id !== game._id));
   };
   const handleAddToBag = game => {
-    if (bag.includes(game)) return;
-    setBag([...bag, game]);
+    if (cart.includes(game)) return;
+    setCart([...cart, game]);
   };
 
-  const [cards, setGames] = useState([]);
-  const [cart, setCart] = useState(1);
+  const [games, setGames] = useState([]);
+  // const [cart, setCart] = useState(1);
 
   const fetchCards = async () => {
     try {
@@ -133,41 +144,20 @@ const GameComponent = ({
     }
   };
 
-  const [active, setActive] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleToggleVideo = () => {
-    setActive(!active);
-  }
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="col-xl-3 col-lg-4 col-md-6">
       <div className="gameCard">
         <img src={img} alt={title} className='img-fluid' onClick={handleDetails} />
-
-        {/* {GameFav.map(game => (
-          <SwiperSlide key={game._id}>
-            <TrailerPlay
-              game={game}
-              active={active}
-              trailer={trailer}
-              toggleVideo={handleToggleVideo}
-            />
-          </SwiperSlide>
-        ))} */}
-
-
-        {login && (
-          <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={handleFavClick}>
-            <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
-          </IconButton>
-        )}
-        {/* <a href="#" className={`like ${library.includes(game) ? 'active' : undefined}`}
-          onClick={
-            library.includes(game)
-              ? () => handleRemoveFromLibrary(game) : () => handleAddToLibrary(game)
-          }>
-          <i className='bi bi-heart-fill'></i>
-        </a> */}
 
         <div className="gameFeature">
           <span className="gameType">{level}</span>
@@ -176,6 +166,10 @@ const GameComponent = ({
 
         <div className="gameTitle mt-4 mb-3">{title}</div>
         {/* <div className="Des">{description}</div> */}
+
+        <Typography variant="subtitle1" gutterBottom sx={{ color: "#ffff" }}>
+          level: {games.level}
+        </Typography>
 
         <div className="gamePrice">
           {discount != 0 && (
@@ -195,20 +189,28 @@ const GameComponent = ({
           </span>
         </div>
 
+        {login && (
+          <IconButton className={`addBag ${library.includes(game) ? 'active' : undefined}`} onClick={() => handleCartClick(game)}>
+            <ShoppingCartIcon className="bi bi-cart-plus" />
+            {/* <i className="bi bi-cart-plus"></i> */}
+          </IconButton>
+        )}
+
+        {login && (
+          <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={handleFavClick}>
+            <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
+          </IconButton>
+        )}
+
         {/* <a href="#" className="addBag" onClick={() => handleAddToBag(game)}>
           <i className="bi bi-cart-plus"></i>
         </a> */}
-
-
-        <IconButton className="addBag">
-          <PlayArrowIcon color="inherit" />
-        </IconButton>
 
         <Box>
           {((AdminType) ||
             to.pathname === ROUTES.MYGAMES) && (
               <IconButton onClick={handleDeleteClick}>
-                <DeleteIcon color="inherit" />
+                <DeleteIcon color="error" />
               </IconButton>
             )}
           {((login.isBusiness && AdminType) ||
@@ -318,7 +320,9 @@ GameComponent.propTypes = {
   Info: PropTypes.func,
   onEdit: PropTypes.func,
   onFav: PropTypes.func,
+  onAddToCart: PropTypes.func,
   onLike: PropTypes.bool,
+  onCart: PropTypes.bool,
 };
 
 // GameComponent.defaultProps = {

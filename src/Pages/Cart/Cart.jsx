@@ -1,67 +1,155 @@
-import React, { useContext, useEffect, useState } from 'react';
-import useDataCard from '../../hooks/useDataCard';
-import axios from 'axios';
-import { Typography } from '@mui/material';
-import normalizeGames from '../Favorite/normalizeFav';
-import filterContext from '../../store/filterContext';
-import GameComponent from '../../Component/GameComponent';
-
-const Cart = ({ items, removeFromCart }) => {
+import { Grid, Slide } from "@mui/material";
+import { Fragment, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Bounce, Flip, toast } from "react-toastify";
+import filterContext from "../../store/filterContext";
+import LoginContext from "../../store/loginContext";
+import useHandleFavClick from "../../hooks/useHandleFav";
+import useDataCard from "../../hooks/useDataCard";
+import ROUTES from "../../routes/ROUTES";
+import GameComponent from "../../Component/GameComponent";
+import useHandleEditGame from "../../hooks/useHandleEdit";
+import gameContext from "../../store/gameContext";
+import normalizeCart from "./normalizeCart";
+import useHandleCartClick from "../../hooks/useHandleCart";
+const FavPage = () => {
+    const { handleFavClick } = useHandleFavClick();
+    const { handleEditClick } = useHandleEditGame();
+    const { handleCartClick } = useHandleCartClick();
+    const navigate = useNavigate();
+    const { login } = useContext(LoginContext);
     const GameFav = useDataCard();
-    let { setDataFromServer, dataFromServer, setGamesCopy, CopyGame, } =
-        useContext(filterContext);
-    const [cart, setCart] = useState(1);
-    const [game, setGame] = useState([])
-    // useEffect(() => {
-    //     const fetchInfo = async () => {
-    //         try {
-    //             await axios.get("/games").then(({ data }) => {
-    //                 setDataFromServer(normalizeGames(data));
-    //                 setGamesCopy(normalizeGames(data));
-    //             });
-    //         } catch (err) {
-    //             return <Typography>Error, Something went wrong i guess</Typography>;
-    //         }
-    //     };
+    let { setGamesCopy, setDataFromServer } = useContext(filterContext);
+    useEffect(() => {
+        const fetchLikes = async () => {
+            try {
+                await axios.get("/games")
+                    .then(({ data }) => {
+                        setDataFromServer(normalizeCart(data));
+                        setGamesCopy(normalizeCart(data));
+                        toast.success("Check you favourites here!", {
+                            position: "top-center",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                            transition: Slide,
+                        });
+                    });
+            } catch (err) {
+                toast.error("There was an error!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
+                });
+            }
+        };
 
-    //     fetchInfo();
-    // }, []);
+        fetchLikes();
+    }, [setGamesCopy, setDataFromServer]);
 
-    // if (!dataFromServer || !dataFromServer.length) {
-    // }
+    if (!GameFav || !GameFav.length) {
+    }
 
-    {/* <ul>
-                {cart.map(game => (
-                    <li key={game.id}>
-                        {game.title} <button onClick={() => removeFromCart(game.id)}>Remove</button>
-                    </li>
-                ))}
-            </ul> */}
-    const handleAddToCart = async () => {
-        try {
-            await axios.post('/cart/add', {
-                game,
-                cart
-            });
-            alert('Item added to cart successfully!');
-        } catch (error) {
-            console.error('Error adding item to cart:', error);
-            alert('An error occurred while adding item to cart.');
-        }
+    const handleEditGame = (id) => {
+        handleEditClick(id);
+    };
+
+    const handleFavGame = async (id) => {
+        handleFavClick(id);
+    };
+
+    const handleCartGame = async (id) => {
+        handleCartClick(id);
+    };
+    const handleDeleteGame = (id) => {
+        const fetchInfo = async () => {
+            try {
+                await axios.delete("/games/" + id).then(({ data }) => {
+                    setDataFromServer((cGamesFromServer) => {
+                        return cGamesFromServer.filter((game) => game._id !== id);
+                    });
+                });
+                toast.success('🧹 Game has been deleted', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Flip,
+                });
+            } catch (error) {
+                if (!login) navigate(ROUTES.LOGIN);
+            }
+            toast.warn("You are not allowed to delete", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            })
+        };
+        fetchInfo();
+    };
+
+    const handleInfoClick = (id) => {
+        navigate(`${ROUTES.DETAILS}/${id}`);
     };
     return (
-        <div className="cart">
-            <h2>Cart</h2>
-            <div className="App">
-                {GameFav.map((game, index) => (
-                    <GameComponent key={index} title={game.title} img={game.image.url} />
-                ))}
-                <button onClick={handleAddToCart}>Add to Cart</button>
-            </div>
-        </div>
-
-
+        <Fragment>
+            <Grid container spacing={2} mt={5}>
+                {GameFav.map(
+                    (game, index) =>
+                        GameFav[index].likes.some((id) => id === login._id) && (
+                            <Grid item lg={4} md={6} xs={12} key={"carsGame" + index}>
+                                <GameComponent
+                                    id={game._id}
+                                    title={game.title}
+                                    price={game.price}
+                                    description={game.description}
+                                    rating={game.rating}
+                                    discount={game.discount}
+                                    img={game.image.url}
+                                    level={game.level}
+                                    onDelete={handleDeleteGame}
+                                    Info={handleInfoClick}
+                                    onEdit={handleEditGame}
+                                    onFav={handleFavGame}
+                                    onAddToCart={handleCartGame}
+                                    onLike={game.liked}
+                                    onCart={game.Carted}
+                                />
+                            </Grid>
+                        )
+                )}
+                <Grid
+                    container
+                    justifyContent="center"
+                    alignItems="center"
+                    direction="row"
+                    m={3}
+                >
+                </Grid>
+            </Grid>
+        </Fragment>
     );
 };
 
-export default Cart;
+export default FavPage;

@@ -11,6 +11,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import HeaderBackup from "./header/HeaderBackup";
 import img from "./header/ui/CssHeader/img/img1.png";
+import useDataCard from "../hooks/useDataCard";
 const LayoutComponent = ({ children }) => {
   const [isDarkTheme, SetDarkTheme] = useState(false);
   const themes = tmc({
@@ -23,7 +24,8 @@ const LayoutComponent = ({ children }) => {
   const { setLogin } = useContext(LoginContext);
   const darkMode = createTheme(themes.dark);
   const lightMode = createTheme(themes.light);
-  const [games, setGames] = useState([])
+  const [games, setGames] = useState([]);
+  const GameFav = useDataCard();
 
   const handleThemeChange = (checked) => {
     SetDarkTheme(checked);
@@ -53,6 +55,7 @@ const LayoutComponent = ({ children }) => {
   return (
     <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
       <CssBaseline />
+
       <HeaderBackup
         isDarkTheme={isDarkTheme}
         onThemeChange={handleThemeChange}
@@ -66,7 +69,7 @@ const LayoutComponent = ({ children }) => {
 
       </MainComponent>
       <FooterComponent />
-    </ThemeProvider>
+    </ThemeProvider >
   );
 };
 

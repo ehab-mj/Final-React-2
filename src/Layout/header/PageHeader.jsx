@@ -17,23 +17,24 @@ import { Slide } from "react-slideshow-image";
 import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import img from "./ui/CssHeader/img/img1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./HomeImg.css"
 import StarIcon from '@mui/icons-material/Star';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import useDataCard from "../../hooks/useDataCard";
+import ROUTES from "../../routes/ROUTES";
 
-export const PageHeader = ({ medias }) => {
+export const PageHeader = ({ medias, id, }) => {
 
   const [popularGames, setPopularGames] = useState([])
   const GameFav = useDataCard();
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US")
       .then(res => res.json())
       .then(data => setPopularGames(data.results))
   }, [])
-
   return (
     <div className="poster">
       <Carousel
@@ -45,7 +46,7 @@ export const PageHeader = ({ medias }) => {
       >
         {
           GameFav.map(game => (
-            <Link style={{ textDecoration: "none", color: "white" }} to={`/games/${game.id}`} >
+            <div style={{ textDecoration: "none", color: "white" }} to={`/games/${game.id}`} >
               <div className="posterImage">
                 <img src={game.image.url} />
               </div>
@@ -63,7 +64,7 @@ export const PageHeader = ({ medias }) => {
                 <div className="posterImage__description">{game ? game.description : ""}</div>
               </div>
 
-            </Link>
+            </div>
           ))
         }
       </Carousel>

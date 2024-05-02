@@ -36,7 +36,6 @@
 }
 
 .game__detailRight {
-    color: white;
     display: flex;
     flex-direction: column;
     height: 450px;
@@ -44,8 +43,8 @@
 }
 
 .game__detailRightTop>div {
-    text-shadow: 0px 0px 5px #000000;
-    margin-bottom: .5rem;
+    text-shadow: 0px 0px 5px #ff9a5f;
+    margin-bottom: 4rem;
 }
 
 .game__name {

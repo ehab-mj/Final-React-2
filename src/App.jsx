@@ -48,17 +48,17 @@ function App() {
                 <gameContext.Provider
                     value={{ dataFromServer, setDataFromServer, setGamesCopy, CopyGame, }}
                 >
-                    {/* <ShopContext.Provider value={{ addToCart }}> */}
-                    <LoginContext.Provider value={{ login, setLogin }}>
-                        <AppContext.Provider value={{ library, setLibrary, bag, setBag }}>
-                            <ToastContainer />
-                            <LayoutComponent>
-                                {/* <Cart items={cartItems} removeFromCart={removeFromCart} /> */}
-                                <Router />
-                            </LayoutComponent>
-                        </AppContext.Provider>
-                    </LoginContext.Provider>
-                    {/* </ShopContext.Provider > */}
+                    <ShopContext.Provider value={{ cart, setCart, library, setLibrary }}>
+                        <LoginContext.Provider value={{ login, setLogin }}>
+                            <AppContext.Provider value={{ library, setLibrary, bag, setBag }}>
+                                <ToastContainer />
+                                <LayoutComponent>
+                                    {/* <Cart items={cartItems} removeFromCart={removeFromCart} /> */}
+                                    <Router />
+                                </LayoutComponent>
+                            </AppContext.Provider>
+                        </LoginContext.Provider>
+                    </ShopContext.Provider >
                 </gameContext.Provider>
             </filterContext.Provider>
         </usersContext.Provider>

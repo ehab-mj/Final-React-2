@@ -32,29 +32,26 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  function handleChange(e) {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0])
-    }
+  function handleChange(event) {
+    setSelectedFile(event.target.files[0]);
   }
+  /// Upload Profile Picture
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const upload = async () => {
-    const fromData = new FormData();
-    fromData.append("file", photo);
-    // axios.post("/upload", fromData)
+  const handleUpload = async () => {
     try {
-      const res = await axios.post('/upload', fromData, {
+      const formData = new FormData();
+      formData.append('profilePicture', selectedFile);
+      await axios.post('/profile/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log('File uploaded:', res.data);
-      // Handle success, maybe update UI
+      alert('Profile picture uploaded successfully!');
     } catch (error) {
-      console.error('Error uploading file:', error);
-      // Handle error
+      console.error('Error uploading profile picture:', error);
     }
-  }
+  };
 
   return (
     <Container mt={4}>
@@ -62,9 +59,11 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
         <Grid item>
           <input type="file" onChange={handleChange} />
           {/* <button disabled={loading || !photo} onClick={handleClick}>Upload</button> */}
-          <button type="button" onClick={upload}>Upload</button>
+          <button type="button" onClick={handleUpload}>Upload</button>
           <img src="./assets/imgs/Profile.png"
             width="305" height="205"
+            onClick={handleUpload}
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>

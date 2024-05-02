@@ -13,6 +13,7 @@ import LoginContext from "../store/loginContext";
 import normalizeFav from "../services/normalizeLike";
 import normalizeGames from "./Favorite/normalizeFav";
 import gameContext from "../store/gameContext";
+import useHandleCartClick from "../hooks/useHandleCart";
 
 const MyGamesPage = () => {
   let { dataFromServer, setDataFromServer, setGamesCopy } =
@@ -21,6 +22,7 @@ const MyGamesPage = () => {
   const { login } = useContext(LoginContext);
   const navigate = useNavigate();
   const { handleFavClick } = useHandleFavClick();
+  const { handleCartClick } = useHandleCartClick();
   const GameFav = useDataCard();
   useEffect(() => {
     const fetchInfo = async () => {
@@ -80,6 +82,9 @@ const MyGamesPage = () => {
   const handleFavGame = async (id) => {
     handleFavClick(id);
   };
+  const handleCartGame = async (id) => {
+    handleCartClick(id);
+  };
   const handleInfoClick = (id) => {
     navigate(`${ROUTES.DETAILS}/${id}`);
   };
@@ -134,13 +139,15 @@ const MyGamesPage = () => {
               title={game.title}
               subtitle={game.subtitle}
               img={game.image.url}
-              phone={game.phone}
+              level={game.level}
               address={game.address}
               Info={handleInfoClick}
               cardNumber={game.bizNumber}
               onEdit={handleEditGame}
               onFav={handleFavGame}
+              onAddToCart={handleCartGame}
               onLike={game.liked}
+              onCart={game.Carted}
               onDelete={handleDeleteGame}
             />
           </Grid>

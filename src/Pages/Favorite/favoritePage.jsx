@@ -12,9 +12,11 @@ import GameComponent from "../../Component/GameComponent";
 import useHandleEditGame from "../../hooks/useHandleEdit";
 import normalizeGames from "./normalizeFav";
 import gameContext from "../../store/gameContext";
+import useHandleCartClick from "../../hooks/useHandleCart";
 const FavPage = () => {
     const { handleFavClick } = useHandleFavClick();
     const { handleEditClick } = useHandleEditGame();
+    const { handleCartClick } = useHandleCartClick();
     const navigate = useNavigate();
     const { login } = useContext(LoginContext);
     const GameFav = useDataCard();
@@ -66,6 +68,9 @@ const FavPage = () => {
     const handleFavGame = async (id) => {
         handleFavClick(id);
     };
+    const handleCartGame = async (id) => {
+        handleCartClick(id);
+    };
     const handleDeleteGame = (id) => {
         const fetchInfo = async () => {
             try {
@@ -116,16 +121,15 @@ const FavPage = () => {
                                 <GameComponent
                                     id={game._id}
                                     title={game.title}
-                                    subtitle={game.subtitle}
                                     img={game.image.url}
-                                    phone={game.phone}
-                                    address={game.address}
-                                    cardNumber={game.bizNumber}
+                                    level={game.level}
                                     onDelete={handleDeleteGame}
                                     Info={handleInfoClick}
                                     onEdit={handleEditGame}
                                     onFav={handleFavGame}
+                                    onAddToCart={handleCartGame}
                                     onLike={game.liked}
+                                    onCart={game.Carted}
                                 />
                             </Grid>
                         )

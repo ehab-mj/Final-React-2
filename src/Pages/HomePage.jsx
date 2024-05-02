@@ -17,9 +17,11 @@ import { Contact } from "../Layout/header/Contact";
 import gameContext from "../store/gameContext";
 import { GameSlide } from "./GameSlide";
 import Categories from "./Category/Category";
+import useHandleCartClick from "../hooks/useHandleCart";
 const HomePage = () => {
   const { handleFavClick } = useHandleFavClick();
   const { handleEditClick } = useHandleEditGame();
+  const { handleCartClick } = useHandleCartClick();
   const GameFav = useDataCard();
   const login = useContext(LoginContext);
   const [count] = useState(12);
@@ -71,6 +73,10 @@ const HomePage = () => {
   const handleFavGame = async (id) => {
     handleFavClick(id);
   };
+  const handleCartGame = async (id) => {
+    handleCartClick(id);
+  };
+
   const handleInfoClick = (id) => {
     navigate(`${ROUTES.DETAILS}/${id}`);
   };
@@ -107,11 +113,11 @@ const HomePage = () => {
           </Grid>
         </Link>
 
-        <ul>
+        {/* <ul>
           {cart.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))}
-        </ul>
+        </ul> */}
 
         {GameFav.slice(0, count).map((game, index) => (
           <Grid item lg={4} md={6} xs={12} key={"carsGame" + index}>
@@ -130,7 +136,9 @@ const HomePage = () => {
               Info={handleInfoClick}
               onEdit={handleEditGame}
               onFav={handleFavGame}
+              onAddToCart={handleCartClick}
               onLike={game.liked}
+              onCart={game.Carted}
             />
           </Grid>
         ))}

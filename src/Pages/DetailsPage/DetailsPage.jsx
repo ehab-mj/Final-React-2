@@ -117,6 +117,7 @@ const DetailsPage = ({ city, street, houseNumber }) => {
                         onEdit={handleEditGame}
                         onFav={handleFavGame}
                         onLike={game.liked}
+                        onCart={game.Carted}
                         onDelete={handleDeleteGame}
                       />
 

@@ -47,19 +47,26 @@ const GamesDetailsPage = () => {
         liked = true;
     }
 
+
+    let Carted = false; // Initialize 'liked' as false by default
+    if (GameDetails.Carts && GameDetails.Carts.find((id) => id === login._id)) {
+        Carted = true;
+    }
+
     return (
         <GameDetailsComponent
             id={id}
             title={GameDetails.title}
             description={GameDetails.description}
-            year={GameDetails.year}
-            director={GameDetails.director}
             category={GameDetails.category}
-            actors={GameDetails.actors}
+            rating={GameDetails.rating}
+            poster={GameDetails.poster}
+            price={GameDetails.price}
+            discount={GameDetails.discount}
             trailer={GameDetails.trailer}
-            watchLink={GameDetails.watchLink}
             image={GameDetails.url}
             liked={liked}
+            Carted={Carted}
             onDelete={handleDeleteGame}
             onEdit={handleEditGame}
             onFavorite={handleFavGame}
