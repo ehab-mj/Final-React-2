@@ -10,11 +10,8 @@ const descriptionSchema = Joi.object({
 const categorySchema = Joi.object({
   category: Joi.string().min(2).max(1024).required(),
 });
-const levelSchema = Joi.object({
-  level: Joi.string().min(2).max(256).allow(""),
-});
 const ratingSchema = Joi.object({
-  rating: Joi.number().min(4).max(6).allow(""),
+  rating: Joi.number().min(1).max(5).allow(""),
 });
 const discountSchema = Joi.object({
   discount: Joi.number().min(0).max(100).allow(""),
@@ -48,7 +45,6 @@ const validateTitle = (title) => titleSchema.validate(title);
 const validateDescription = (description) =>
   descriptionSchema.validate(description);
 const validateCategorySchema = (category) => categorySchema.validate(category);
-const validateLevel = (level) => levelSchema.validate(level);
 const validateRating = (rating) => ratingSchema.validate(rating);
 const validateDiscount = (discount) => discountSchema.validate(discount);
 const validatePrice = (price) => priceSchema.validate(price);
@@ -66,7 +62,6 @@ const validateSchema = {
   category: validateCategorySchema,
   watchLink: validateWatchLinkSchema,
   trailer: validateTrailerSchema,
-  level: validateLevel,
   rating: validateRating,
   discount: validateDiscount,
   price: validatePrice,

@@ -3,7 +3,6 @@ const toServer = (data) => {
     title: data.title,
     description: data.description,
     category: data.category,
-    level: data.level,
     rating: data.rating,
     discount: data.discount,
     price: data.price,

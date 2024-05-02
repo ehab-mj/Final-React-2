@@ -24,6 +24,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import useDataCard from "../../hooks/useDataCard";
 import ROUTES from "../../routes/ROUTES";
+import GameRating from "../../Pages/GameRating/GameRating";
 
 export const PageHeader = ({ medias, id, }) => {
 
@@ -54,11 +55,16 @@ export const PageHeader = ({ medias, id, }) => {
               <div className="posterImage__overlay">
                 <div className="posterImage__title">{game ? game.title : ""}</div>
                 <div className="posterImage__runtime">
-                  {game ? game.price : ""}
+                  ${((1 - game.discount) * game.price).toFixed(2)}
+
                   <span className="posterImage__rating">
-                    {game ? game.rating : ""}
-                    <StarIcon className="fas fa-star" />{" "}
+                    <GameRating rating={game.rating} />
+                    {/* {game ? game.rating : ""} */}
+                    {/* <StarIcon className="fas fa-star" />{" "} */}
                     {/* <i className="fas fa-star" />{" "} */}
+                  </span>
+                  <span className="posterImage__discount">
+                    <i >{game.discount * 100}%</i>
                   </span>
                 </div>
                 <div className="posterImage__description">{game ? game.description : ""}</div>
@@ -74,14 +80,12 @@ export const PageHeader = ({ medias, id, }) => {
 
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   paragraph: PropTypes.string,
 };
 PageHeader.defaultProps = {
   title: "title default",
-  level: "Median",
   category: "Action",
   rating: 5,
   description: "description",

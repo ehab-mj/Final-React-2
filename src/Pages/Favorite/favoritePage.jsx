@@ -122,7 +122,6 @@ const FavPage = () => {
                                     id={game._id}
                                     title={game.title}
                                     img={game.image.url}
-                                    level={game.level}
                                     onDelete={handleDeleteGame}
                                     Info={handleInfoClick}
                                     onEdit={handleEditGame}

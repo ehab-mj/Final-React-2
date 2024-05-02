@@ -13,12 +13,12 @@ import TrailerPlay from "./TrailerPlay";
 import IsAdmin from "../guard/isAdmin";
 import './gameSlide.css'
 import PauseIcon from '@mui/icons-material/Pause';
+import GameRating from "../Pages/GameRating/GameRating";
 const GameDetailsComponent = ({
     title,
     description,
     category,
     trailer,
-    level,
     price,
     rating,
     active,
@@ -53,6 +53,7 @@ const GameDetailsComponent = ({
         setIsOpen(!isOpen);
     };
 
+    const [autoplay, setAutoplay] = useState(true);
 
     const [currentMovieDetail, setMovie] = useState()
 
@@ -70,6 +71,15 @@ const GameDetailsComponent = ({
                         objectFit: "contain",
                     }}
                 />
+                <Grid Grid item xs={12} md={4} sx={{ marginBottom: "70px", position: "relative" }}
+                    style={{
+                        maxWidth: "100%",
+                        height: "20vh",
+                        marginTop: -120,
+                        objectFit: "contain",
+                    }}>
+                    Buy Now
+                </Grid>
             </Grid>
 
             <Grid item xs={12} md={8} sx={{ marginTop: 20 }}>
@@ -79,14 +89,12 @@ const GameDetailsComponent = ({
                     sx={{ fontWeight: 600 }}
                 >
                     {title}
+                    <GameRating rating={rating} />
                 </Typography>
 
                 <Divider />
                 <Typography variant="subtitle1" gutterBottom >
-                    Description: {description}
-                </Typography>
-                <Typography variant="subtitle1" gutterBottom >
-                    Level: {level}
+                    {description} {" "}
                 </Typography>
                 <Typography variant="subtitle1" gutterBottom >
                     Rating: {rating}
@@ -98,6 +106,19 @@ const GameDetailsComponent = ({
                     Category: {category.join(", ")}
                 </Typography>
 
+                <div className={`video ${active ? "active" : undefined}`}>
+                    <iframe
+                        width="500"
+                        height="300"
+                        autoPlay={autoplay}
+                        src={trailer}
+                        title={title}
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                        allowFullScreen
+                    >
+
+                    </iframe>
+                </div>
 
 
                 <div className="gameSlider">

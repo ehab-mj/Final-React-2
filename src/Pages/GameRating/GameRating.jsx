@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './gameRating.css';
 import StarIcon from '@mui/icons-material/Star';
 function GameRating({ rating }) {
-    const [stars, setStars] = useState([])
+    const [stars, setStars] = useState([]);
 
     const generateStars = () => {
         let stars = []

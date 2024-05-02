@@ -139,7 +139,6 @@ const MyGamesPage = () => {
               title={game.title}
               subtitle={game.subtitle}
               img={game.image.url}
-              level={game.level}
               address={game.address}
               Info={handleInfoClick}
               cardNumber={game.bizNumber}

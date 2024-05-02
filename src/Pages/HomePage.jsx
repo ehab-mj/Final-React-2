@@ -126,7 +126,6 @@ const HomePage = () => {
               title={game.title}
               description={game.description}
               category={game.category}
-              level={game.level}
               rating={game.rating}
               discount={game.discount}
               price={game.price}

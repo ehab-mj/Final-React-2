@@ -127,7 +127,6 @@ const FavPage = () => {
                                     rating={game.rating}
                                     discount={game.discount}
                                     img={game.image.url}
-                                    level={game.level}
                                     onDelete={handleDeleteGame}
                                     Info={handleInfoClick}
                                     onEdit={handleEditGame}

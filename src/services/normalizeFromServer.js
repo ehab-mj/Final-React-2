@@ -3,7 +3,6 @@ const fromServer = (dataFromServer) => {
     title: dataFromServer.title,
     description: dataFromServer.description,
     category: dataFromServer.category,
-    level: dataFromServer.level,
     rating: dataFromServer.rating,
     discount: dataFromServer.discount,
     price: dataFromServer.price,

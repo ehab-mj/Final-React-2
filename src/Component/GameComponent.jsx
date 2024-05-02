@@ -37,7 +37,6 @@ const GameComponent = ({
   game,
   title,
   description,
-  level,
   category,
   rating,
   poster,
@@ -160,16 +159,11 @@ const GameComponent = ({
         <img src={img} alt={title} className='img-fluid' onClick={handleDetails} />
 
         <div className="gameFeature">
-          <span className="gameType">{level}</span>
           <GameRating rating={rating} />
         </div>
 
         <div className="gameTitle mt-4 mb-3">{title}</div>
         {/* <div className="Des">{description}</div> */}
-
-        <Typography variant="subtitle1" gutterBottom sx={{ color: "#ffff" }}>
-          level: {games.level}
-        </Typography>
 
         <div className="gamePrice">
           {discount != 0 && (
@@ -178,8 +172,11 @@ const GameComponent = ({
                 <i>{discount * 100}%</i>
               </span>
 
+              <span className="prevPrice">$
+                {price.toFixed(2)}
+              </span>
               {/* <span className="prevPrice">$
-                {GameFav.toFixed(2)}
+                {game.price.toFixed(2)}
               </span> */}
             </>
           )}
@@ -308,7 +305,6 @@ GameComponent.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
   discount: PropTypes.number.isRequired,
@@ -328,7 +324,6 @@ GameComponent.propTypes = {
 // GameComponent.defaultProps = {
 //   img: "https://img.redro.pl/plakaty/default-profile-picture-avatar-photo-placeholder-vector-illustration-700-216668545.jpg",
 //   title: "title default",
-//   level: "Median",
 //   category: "Action",
 //   rating: 5,
 //   description: "description",

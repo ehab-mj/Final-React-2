@@ -15,7 +15,6 @@ function ShopBagItem({
     game,
     title,
     description,
-    level,
     category,
     rating,
     poster,
