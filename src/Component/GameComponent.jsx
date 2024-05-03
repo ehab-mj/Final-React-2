@@ -33,6 +33,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TrailerPlay from "./TrailerPlay";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from "react-bootstrap";
+import IsAdmin from "../guard/isAdmin";
 const GameComponent = ({
   game,
   title,
@@ -154,8 +155,8 @@ const GameComponent = ({
   };
 
   return (
-    <div className="col-xl-3 col-lg-4 col-md-6">
-      <div className="gameCard">
+    <div className="col-xl-3 col-lg-4 col-md-6" class="Bg">
+      <div className="gameCard" >
         <img src={img} alt={title} className='img-fluid' onClick={handleDetails} />
 
         <div className="gameFeature">
@@ -204,7 +205,7 @@ const GameComponent = ({
         </a> */}
 
         <Box>
-          {((AdminType) ||
+          {((login.isBusiness && AdminType) ||
             to.pathname === ROUTES.MYGAMES) && (
               <IconButton onClick={handleDeleteClick}>
                 <DeleteIcon color="error" />
@@ -213,7 +214,7 @@ const GameComponent = ({
           {((login.isBusiness && AdminType) ||
             to.pathname === ROUTES.MYGAMES) && (
               <IconButton onClick={handleEditClick}>
-                <ModeIcon />
+                <ModeIcon color="warning" />
               </IconButton>
             )}
         </Box>

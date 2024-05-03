@@ -1,4 +1,4 @@
-import { Box, BottomNavigationAction } from "@mui/material";
+import { Box, BottomNavigationAction, Typography } from "@mui/material";
 import NavLinkComponent from "../NavLinkComponent";
 import { useContext } from "react";
 import {

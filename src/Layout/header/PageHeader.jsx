@@ -67,9 +67,8 @@ export const PageHeader = ({ medias, id, }) => {
                     <i >{game.discount * 100}%</i>
                   </span>
                 </div>
-                <div className="posterImage__description">{game ? game.description : ""}</div>
+                {/* <div className="posterImage__description">{game ? game.description : ""}</div> */}
               </div>
-
             </div>
           ))
         }

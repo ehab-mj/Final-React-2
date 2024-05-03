@@ -12,6 +12,7 @@ import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRound
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
     Box,
     List,
@@ -45,7 +46,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
 
     const handleFavClick = () => {
         console.log("clicked on Fav");
-        navigate(ROUTES.FAV);
+        navigate(ROUTES.CART);
     }
 
     const handleMGamesClick = () => {
@@ -151,7 +152,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
                     <ListItem key="My Favourites" disablePadding>
                         <ListItemButton onClick={handleFavClick}>
                             <ListItemIcon>
-                                <BookmarkRoundedIcon />
+                                <ShoppingCartIcon />
                             </ListItemIcon>
                             <ListItemText primary="Favourites" />
                         </ListItemButton>

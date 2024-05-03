@@ -13,11 +13,12 @@ import ROUTES from "../routes/ROUTES";
 import LoginContext from "../store/loginContext";
 import { Bounce, Flip, toast } from "react-toastify";
 import normalizeGames from "./Favorite/normalizeFav";
-import { Contact } from "../Layout/header/Contact";
+
 import gameContext from "../store/gameContext";
 import { GameSlide } from "./GameSlide";
 import Categories from "./Category/Category";
 import useHandleCartClick from "../hooks/useHandleCart";
+import Contact from "./ContactUs/Contact";
 const HomePage = () => {
   const { handleFavClick } = useHandleFavClick();
   const { handleEditClick } = useHandleEditGame();
@@ -112,13 +113,11 @@ const HomePage = () => {
           <Grid>
           </Grid>
         </Link>
-
         {/* <ul>
           {cart.map((item, index) => (
             <li key={index}>{item.name}</li>
           ))}
         </ul> */}
-
         {GameFav.slice(0, count).map((game, index) => (
           <Grid item lg={4} md={6} xs={12} key={"carsGame" + index}>
             <GameComponent
@@ -143,6 +142,11 @@ const HomePage = () => {
         ))}
 
         {/* <Contact /> */}
+        <Grid item lg={12} md={12} xs={12}>
+          <Contact />
+        </Grid>
+
+
       </Grid>
     </div>
   );

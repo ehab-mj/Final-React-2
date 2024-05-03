@@ -1,0 +1,120 @@
+table {
+    width: 100%;
+    font-size: 1.3em;
+    border-collapse: collapse;
+}
+
+thead {
+    background: var(--second);
+}
+
+thead tr th {
+    padding: 19px 10px;
+}
+
+thead tr th:nth-child(2) {
+    min-width: 200px;
+}
+
+tr td {
+    padding: 10px;
+}
+
+tr img {
+    width: 50px;
+    margin: 0 3px;
+    border-radius: 3px;
+}
+
+tr td>.title {
+    display: flex;
+    align-items: center;
+    margin: 0 3px;
+}
+
+table tr {
+    white-space: nowrap;
+    transition: .23s ease-in-out;
+}
+
+table tbody tr:hover {
+    background: #232323;
+    color: #ffff;
+}
+
+/* .shopBagTable {
+    margin-top: 50px;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 50px;
+    width: 100%;
+    background: var(--bgcolor);
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.shopBagTable thead tr {
+    font-size: 1.3rem;
+}
+
+.shopBagTable thead tr th {
+    background: transparent;
+    color: #ffffff;
+}
+
+.itemCount {
+    font-size: 1.3rem;
+}
+
+.payment {
+    display: inline-flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 1.3rem;
+    color: #ffffff;
+} */
+
+/* .payment a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bgcolor);
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35);
+} */
+
+
+
+
+/* .shopBagItem {
+    margin-bottom: 20px;
+}
+
+.shopBagItem tr {
+    margin-bottom: 20px !important;
+}
+
+.shopBagItem td,
+.shopBagItem th {
+    background: transparent;
+    color: #ffffff;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.shopBagItem a {
+    color: #ffffff;
+    font-size: 1.6rem;
+}
+
+.shopBagItem img {
+    width: 120px;
+    height: 70px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+} */

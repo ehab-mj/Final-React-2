@@ -38,8 +38,9 @@ import {
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
 import { Pages } from "@mui/icons-material";
 import { Stack } from "react-bootstrap";
-import img from "./ui/CssHeader/img/img1.png";
 import './HomeImg.css';
+import './ui/CssHeader/Logo.css';
+
 const themes = tmc({
   "text.headerColor": "!#323946",
   "text.headerActive": "*white",
@@ -260,13 +261,17 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
           <Toolbar disableGutters>
             {/* <DashboardCustomizeRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
-              <img onClick={handleHomeClick}
+              {/* <img onClick={handleHomeClick}
                 src={ishover ? "./assets/imgs/LogoHover.png" : "./assets/imgs/Logo.png"}
                 alt="logo"
                 width="70" height="70"
                 onMouseEnter={() => sethover(true)}
                 onMouseLeave={() => sethover(false)}
-              />
+              /> */}
+              <Typography>
+                <span className="Game">Game</span><span className="Shop">Shop</span>
+
+              </Typography>
             </Box>
             <Links />
             <FilterComponent />

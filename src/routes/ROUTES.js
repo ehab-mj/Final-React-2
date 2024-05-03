@@ -7,6 +7,7 @@ const ROUTES = {
   CREATEGAME: "/creategame",
   SANDBOX: "/sandbox",
   MYGAMES: "/mygames",
+  CATEGORY: "/category",
   FAV: "/fav",
   DETAILS: "/detalis",
   PROFILE: "/profile",

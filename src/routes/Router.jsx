@@ -23,6 +23,7 @@ import PageHeader from "../Layout/header/PageHeader";
 // import GameDetailsComponent from "../Component/GameDetailsComponent";
 import GamesDetailsPage from "../Pages/GamesPage/GamesDetailsPage";
 import Cart from "../Pages/Cart/Cart";
+import Categories from "../Pages/Category/Category";
 
 
 
@@ -38,6 +39,7 @@ const Router = () => {
       <Route path={ROUTES.RESETPASSWORD} element={<ResetPassword />} />
       <Route path={`${ROUTES.DETAILS}/:id`} element={<GamesDetailsPage />} />
       <Route path={ROUTES.CART} element={<Cart />} />
+      <Route path={ROUTES.CART} element={<Categories />} />
 
       <Route path={ROUTES.CONTACT} element={<Contact />} />
       <Route path={ROUTES.PAGEHEADER} element={<PageHeader />} />

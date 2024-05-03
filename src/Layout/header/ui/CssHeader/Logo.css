@@ -1,0 +1,15 @@
+.Game {
+    margin-top: 4px;
+    font-family: 'Bauhaus 93';
+    text-decoration: uppercase;
+    font-size: 1.7rem;
+    color: #ffffff;
+}
+
+.Shop {
+    margin-top: 4px;
+    font-family: 'Bauhaus 93';
+    text-decoration: uppercase;
+    font-size: 1.7rem;
+    color: var(--Red);
+}

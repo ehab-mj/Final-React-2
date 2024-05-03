@@ -62,7 +62,7 @@ const MyGamesPage = () => {
             <Tooltip title="Create a Game">
               <Button sx={{ display: "flex", justifyContent: "center", padding: "1rem" }}
                 style={{
-                  backgroundColor: "#1AA5B0",
+                  backgroundColor: "#f15000",
                   width: "100%",
                   display: "flex",
                   flexDirection: "coulmn",
@@ -137,11 +137,12 @@ const MyGamesPage = () => {
             <GameComponent
               id={game._id}
               title={game.title}
-              subtitle={game.subtitle}
               img={game.image.url}
-              address={game.address}
+              price={game.price}
+              discount={game.discount}
+
+              rating={game.rating}
               Info={handleInfoClick}
-              cardNumber={game.bizNumber}
               onEdit={handleEditGame}
               onFav={handleFavGame}
               onAddToCart={handleCartGame}
@@ -156,7 +157,7 @@ const MyGamesPage = () => {
           <Tooltip title="Create a Game">
             <Button sx={{ display: "flex", justifyContent: "center", padding: "1rem", marginLeft: "1.69rem", marginRight: "0" }}
               style={{
-                backgroundColor: "#1AA5B0",
+                backgroundColor: "#f15000",
                 width: "50%",
                 marginTop: "1rem",
                 display: "flex",
