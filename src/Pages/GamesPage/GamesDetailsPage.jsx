@@ -7,9 +7,11 @@ import LoginContext from "../../store/loginContext.js";
 import useHandleDelete from "../../hooks/useHandleDelete.jsx";
 import useHandleFavClick from "../../hooks/useHandleFav.jsx";
 import { fromServer } from "../../services/normalizeFromServer.js";
+import useHandleCartClick from "../../hooks/useHandleCart.jsx";
 const GamesDetailsPage = () => {
     const handleDelete = useHandleDelete();
     const { handleFavClick } = useHandleFavClick();
+    const { handleCartClick } = useHandleCartClick();
     const navigate = useNavigate();
     const { login } = useContext(LoginContext);
     const { id } = useParams();
@@ -40,7 +42,9 @@ const GamesDetailsPage = () => {
     const handleFavGame = async (id) => {
         handleFavClick(id);
     };
-
+    const handleCartGame = async (id) => {
+        handleCartClick(id);
+    };
 
     let liked = false; // Initialize 'liked' as false by default
     if (GameDetails.likes && GameDetails.likes.find((id) => id === login._id)) {
@@ -57,6 +61,7 @@ const GamesDetailsPage = () => {
         <GameDetailsComponent
             id={id}
             title={GameDetails.title}
+            game={GameDetails.game}
             description={GameDetails.description}
             category={GameDetails.category}
             rating={GameDetails.rating}
@@ -69,6 +74,8 @@ const GamesDetailsPage = () => {
             Carted={Carted}
             onDelete={handleDeleteGame}
             onEdit={handleEditGame}
+            onFav={handleFavGame}
+            onAddToCart={handleCartClick}
             onFavorite={handleFavGame}
         />
     );

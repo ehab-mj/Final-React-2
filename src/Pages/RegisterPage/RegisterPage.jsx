@@ -17,6 +17,7 @@ import {
   Alert,
   FormControlLabel,
 } from "@mui/material";
+import './ui/register.css'
 const RegisterPage = () => {
   const [viewRegister, setviewRegister] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -105,7 +106,7 @@ const RegisterPage = () => {
   return (
     <Box
       sx={{
-        color: "#1AA5B0",
+        color: "#f15000",
         marginTop: 8,
         display: "flex",
         flexDirection: "column",
@@ -114,10 +115,10 @@ const RegisterPage = () => {
         padding: "2rem"
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "#1AA5B0" }}>
+      {/* <Avatar sx={{ m: 1, bgcolor: "#1AA5B0" }}>
         <LockOutlinedIcon />
-      </Avatar>
-      <Typography component="h1" variant="h5">
+      </Avatar> */}
+      <Typography component="h1" variant="h5" style={{ color: "#f15000" }}>
         Create a new account
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
@@ -143,9 +144,11 @@ const RegisterPage = () => {
                   color="primary"
                   checked={checked}
                   onChange={(e) => handleCheck(e)}
+                  style={{ color: "#ff1744" }}
                 />
               }
               label="Business Account"
+              style={{ color: "#ff1744" }}
             />
           </Grid>
         </Grid>
@@ -161,7 +164,7 @@ const RegisterPage = () => {
         {viewRegister && <Alert severity="error" >Failed To Register!</Alert>}{" "}
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link to={ROUTES.LOGIN}>Already have an account? Sign in</Link>
+            <Link style={{ color: "#f15000" }} to={ROUTES.LOGIN}>Already have an account? Sign in</Link>
           </Grid>
         </Grid>
       </Box>
