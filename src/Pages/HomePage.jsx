@@ -25,7 +25,7 @@ const HomePage = () => {
   const { handleCartClick } = useHandleCartClick();
   const GameFav = useDataCard();
   const login = useContext(LoginContext);
-  const [count] = useState(12);
+  const [count] = useState(1000);
   const navigate = useNavigate();
   let { setDataFromServer, dataFromServer, setGamesCopy, CopyGame, } =
     useContext(filterContext);

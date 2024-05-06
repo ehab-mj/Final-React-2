@@ -56,7 +56,8 @@ const GameComponent = ({
   videoUrl,
   productId,
   toggleVideo,
-  active
+  active,
+
 }) => {
   const login = useContext(LoginContext);
   // const { library, setLibrary, bag, setBag } = useContext(AppContext);
@@ -66,7 +67,6 @@ const GameComponent = ({
   const [cartMessage, setCartMessage] = useState('');
   const GameFav = useDataCard();
   // const { addToCart, cartItems } = useContext(ShopContext);
-
   const handleDetails = () => {
     navigate(`${ROUTES.DETAILS}/${id}`);
   }
@@ -144,19 +144,39 @@ const GameComponent = ({
     }
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openPopup = () => {
+    setIsOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closePopup = () => {
+    setIsOpen(false);
   };
-
   return (
     <div className="col-xl-3 col-lg-4 col-md-6" class="Bg">
-      <div className="gameCard" >
+      <div className="gameCard">
+
+        <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={openPopup}>
+          <PlayArrowIcon />
+        </IconButton>
+        {isOpen && (
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <iframe
+              width="560"
+              height="315"
+              src={trailer}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+            <div className="popup-overlay" onClick={closePopup}>
+              <PauseIcon onClick={closePopup}>Close</PauseIcon>
+            </div>
+          </div>
+        )}
+
         <img src={img} alt={title} className='img-fluid' onClick={handleDetails} />
 
         <div className="gameFeature">
@@ -189,16 +209,16 @@ const GameComponent = ({
 
         {login && (
           <IconButton className={`addBag ${library.includes(game) ? 'active' : undefined}`} onClick={() => handleCartClick(game)}>
-            <ShoppingCartIcon className="bi bi-cart-plus" />
-            {/* <i className="bi bi-cart-plus"></i> */}
-          </IconButton>
-        )}
-
-        {login && (
-          <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={handleFavClick}>
             <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
           </IconButton>
         )}
+
+        {/* {login && (
+          <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={handleFavClick}>
+            <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
+          </IconButton>
+        )} */}
+
 
         {/* <a href="#" className="addBag" onClick={() => handleAddToBag(game)}>
           <i className="bi bi-cart-plus"></i>
@@ -238,7 +258,7 @@ const GameComponent = ({
           image={img}
           alt="image" */}
       </div>
-    </div>
+    </div >
   );
   {/* <CardHeader className="gameTitle mt-4 mb-3" title={title} subheader={subtitle}>
       </CardHeader>

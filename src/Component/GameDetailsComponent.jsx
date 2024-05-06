@@ -126,7 +126,7 @@ const GameDetailsComponent = ({
                                 {discount != 0 && (
                                     <>
                                         <span className="T-discount">
-                                            <span>save</span> <i>{discount * 100}%</i> <span>off</span>
+                                            <span>save</span>{" "}<i>{discount * 100}%</i>{" "}<span>off</span>
                                         </span>
                                     </>
                                 )}

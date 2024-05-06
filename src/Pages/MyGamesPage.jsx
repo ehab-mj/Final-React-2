@@ -18,7 +18,7 @@ import useHandleCartClick from "../hooks/useHandleCart";
 const MyGamesPage = () => {
   let { dataFromServer, setDataFromServer, setGamesCopy } =
     useContext(filterContext);
-  const [count] = useState(12);
+  const [count] = useState(1000);
   const { login } = useContext(LoginContext);
   const navigate = useNavigate();
   const { handleFavClick } = useHandleFavClick();

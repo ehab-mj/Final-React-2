@@ -149,12 +149,12 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
 
             <List>
                 {login && (
-                    <ListItem key="My Favourites" disablePadding>
+                    <ListItem key="My Cart" disablePadding>
                         <ListItemButton onClick={handleFavClick}>
                             <ListItemIcon>
                                 <ShoppingCartIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Favourites" />
+                            <ListItemText primary="Cart" />
                         </ListItemButton>
                     </ListItem>
                 )}
