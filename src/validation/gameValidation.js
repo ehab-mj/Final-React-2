@@ -17,7 +17,7 @@ const discountSchema = Joi.object({
   discount: Joi.number().min(0).max(100).allow(""),
 });
 const priceSchema = Joi.object({
-  price: Joi.number().min(0).max(100).required(),
+  price: Joi.number().min(0).max(1000).required(),
 });
 const urlSchema = Joi.object({
   url: Joi.string().min(14).allow(""),

@@ -53,7 +53,7 @@ const LayoutComponent = ({ children }) => {
 
 
   return (
-    <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
+    <ThemeProvider theme={isDarkTheme ? lightMode : darkMode}>
       <CssBaseline />
 
       <HeaderBackup

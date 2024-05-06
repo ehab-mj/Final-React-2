@@ -35,20 +35,20 @@ const alwaysLinks = [{
 ];
 
 const loggedInLinks = [
-  {
-    to: ROUTES.CATEGORY, title:
-      <Tooltip title="Favorite ">
-        <BookmarkRoundedIcon
-          style={{
-            width: "2.2rem",
-            height: "3rem",
-          }}
-        />
-      </Tooltip >
-  },
+  // {
+  //   to: ROUTES.CATEGORY, title:
+  //     <Tooltip title="Favorite ">
+  //       <BookmarkRoundedIcon
+  //         style={{
+  //           width: "2.2rem",
+  //           height: "3rem",
+  //         }}
+  //       />
+  //     </Tooltip >
+  // },
   {
     to: ROUTES.CART, title:
-      <Tooltip title="Category ">
+      <Tooltip title="Cart ">
         <ShoppingCartIcon
           style={{
             width: "2.2rem",

@@ -1,33 +1,22 @@
 import { Typography, Divider, IconButton, Box, Grid, AppBar, Container, Slide } from "@mui/material";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ModeIcon from "@mui/icons-material/Mode";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import ROUTES from "../routes/ROUTES";
 import LoginContext from "../store/loginContext";
 import './GameDetailsCom.css'
-import TrailerPlay from "./TrailerPlay";
-import IsAdmin from "../guard/isAdmin";
 import './gameSlide.css'
 import './Test.css'
-import PauseIcon from '@mui/icons-material/Pause';
-import GameRating from "../Pages/GameRating/GameRating";
-import ImageHeaderDetails from "./ImageHeaderDetails";
-import uiConfigs from "../config/uiConfigs";
 import StarIcon from '@mui/icons-material/Star';
-import tmdbConfigs from "../config/tmdb.configs";
-import { Button } from "react-bootstrap";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useHandleFavClick from "../hooks/useHandleFav";
-import GameComponent from "./GameComponent";
-import useHandleCartClick from "../hooks/useHandleCart";
-import axios from "axios";
-import { Flip, toast } from "react-toastify";
+import { Bounce, Flip, toast } from "react-toastify";
 import filterContext from "../store/filterContext";
 import useDataCard from "../hooks/useDataCard";
+import ROUTES from "../routes/ROUTES";
+import IsAdmin from "../guard/isAdmin";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ModeIcon from "@mui/icons-material/Mode";
+import axios from "axios";
 const GameDetailsComponent = ({
     game,
     title,
@@ -53,7 +42,6 @@ const GameDetailsComponent = ({
     let location = useLocation();
     const { handleFavClick } = useHandleFavClick();
     const { setDataFromServer } = useContext(filterContext);
-    const GameFav = useDataCard();
 
     const handleFavGame = async (id) => {
         handleFavClick(id);
@@ -64,7 +52,40 @@ const GameDetailsComponent = ({
     };
 
     const handleDeleteClick = () => {
-        onDelete(id);
+        const fetchInfo = async () => {
+            try {
+                await axios.delete("/games/" + id).then(({ data }) => {
+                    setDataFromServer((cGamesFromServer) => {
+                        return cGamesFromServer.filter((game) => game._id !== id);
+                    });
+                });
+                toast.success('🧹 Game has been deleted', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Flip,
+                });
+            } catch (error) {
+                if (!login) navigate(ROUTES.LOGIN);
+            }
+            toast.warn("You are not allowed to delete", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            })
+        };
+        fetchInfo();
     };
 
     const handleEditClick = () => {
@@ -76,14 +97,10 @@ const GameDetailsComponent = ({
     };
 
     const [isOpen, setIsOpen] = useState(false);
-
     const togglePopup = () => {
         setIsOpen(!isOpen);
     };
-
     const [autoplay, setAutoplay] = useState(true);
-
-    const [currentMovieDetail, setMovie] = useState()
 
     return (
         <Box >
@@ -103,29 +120,14 @@ const GameDetailsComponent = ({
                         <img className="T-poster"
                             src={image}
                             alt={title}
-                        // className="w-full h-full object-cover"
                         />
                         <div className="T-Price">
                             <h1 className="T-currentPrice">
                                 {discount != 0 && (
                                     <>
                                         <span className="T-discount">
-                                            <i>{discount * 100}%</i><span>Off</span>
+                                            <span>save</span> <i>{discount * 100}%</i> <span>off</span>
                                         </span>
-
-                                        {/* <span className="prevPrice">$
-                                            {price.toFixed(2)}
-                                        </span> */}
-                                        {/* <span className="T-discount">
-                                            <i>{discount * 100}%</i> <span>Off</span>
-                                        </span> */}
-                                        {/* 
-                                        <span className="prevPrice">$
-                                            {price.toFixed(2)}
-                                        </span> */}
-                                        {/* <span className="prevPrice">$
-                {game.price.toFixed(2)}
-              </span> */}
                                     </>
                                 )}
                                 <span className="currentPrice">
@@ -153,6 +155,22 @@ const GameDetailsComponent = ({
                                 </IconButton>
                             </Box>
                         )}
+
+                        <Box>
+                            {((login.isBusiness && IsAdmin) ||
+                                to.pathname === ROUTES.MYGAMES) && (
+                                    <IconButton onClick={handleDeleteClick}>
+                                        <DeleteIcon color="error" />
+                                    </IconButton>
+                                )}
+                            {((login.isBusiness && IsAdmin) ||
+                                to.pathname === ROUTES.MYGAMES) && (
+                                    <IconButton onClick={handleEditClick}>
+                                        <ModeIcon color="warning" />
+                                    </IconButton>
+                                )}
+                        </Box>
+
                     </div>
                 </div>
 
@@ -191,23 +209,6 @@ const GameDetailsComponent = ({
                             </iframe>
                         </div>
                         <div className="grid sm:grid-cols-5 grid-cols-3 gap-4 p-6 bg-main border border-gray-800 rounded-lg">
-                            {/* share */}
-                            {/* <div className="col-span-1 flex-colo border-r border-border">
-                                    <button
-                                        onClick={() => setModalOpen(true)}
-                                        className="w-10 h-10 flex-colo rounded-lg bg-white bg-opacity-20"
-                                    >
-                                        <ModeIcon />
-                                    </button>
-                                </div> */}
-                            {/* language */}
-                            {/* <div className="col-span-2 flex-colo font-medium text-sm">
-                                    <p>
-                                        Language :{" "}
-                                        <span className="ml-2 truncate">{movie?.language}</span>
-                                    </p>
-                                </div> */}
-                            {/* watch button */}
                         </div>
                     </div>
                 </div>
