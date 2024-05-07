@@ -39,7 +39,7 @@ const Router = () => {
       <Route path={ROUTES.RESETPASSWORD} element={<ResetPassword />} />
       <Route path={`${ROUTES.DETAILS}/:id`} element={<GamesDetailsPage />} />
       <Route path={ROUTES.CART} element={<Cart />} />
-      <Route path={ROUTES.CART} element={<Categories />} />
+      <Route path={ROUTES.CATEGORY} element={<Categories />} />
 
       <Route path={ROUTES.CONTACT} element={<Contact />} />
       <Route path={ROUTES.PAGEHEADER} element={<PageHeader />} />

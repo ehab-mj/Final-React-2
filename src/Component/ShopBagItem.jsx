@@ -87,30 +87,8 @@ function ShopBagItem({
 
 
     return (
-        <div>
-            {
-                GameFav.map(
-                    (game, index) =>
-                        GameFav[index].likes.some((id) => id === login._id) && (
-                            <tr className="shopBagItem">
-                                <th scope='row'>{index + 1}</th>
-                                <td>
-                                    <img src={game.image.url} alt='' className='img-fluid' />
-                                </td>
-                                <td>{game.title}</td>
-                                <td>${game.price}</td>
-                                <td>{game.discount * 100}%</td>
-                                <td>${(game.price * (1 - game.discount)).toFixed(2)}</td>
-                                <td>
-                                    <a href="#" onClick={() => handleRemoveFromBag(game)}>
-                                        <DeleteIcon class="bi bi-trash" />
-                                        {/* // <i class="bi bi-trash"></i> */}
-                                    </a>
-                                </td>
-                            </tr>
-                        )
-                )}
-        </div>
+        <>
+        </>
     )
 }
 

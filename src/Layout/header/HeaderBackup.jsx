@@ -40,6 +40,8 @@ import { Pages } from "@mui/icons-material";
 import { Stack } from "react-bootstrap";
 import './HomeImg.css';
 import './ui/CssHeader/Logo.css';
+import ShopContext from "../../store/ShopContext";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const themes = tmc({
   "text.headerColor": "!#323946",
@@ -60,6 +62,7 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { UserInfo, setuserInfo } = useContext(usersContext);
   const isMenuOpen = Boolean(anchorEl);
+  const { library, cart } = useContext(ShopContext);
 
 
   useEffect(() => {

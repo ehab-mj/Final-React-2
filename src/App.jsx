@@ -50,13 +50,13 @@ function App() {
                 >
                     <ShopContext.Provider value={{ cart, setCart, library, setLibrary }}>
                         <LoginContext.Provider value={{ login, setLogin }}>
-                            <AppContext.Provider value={{ library, setLibrary, bag, setBag }}>
-                                <ToastContainer />
-                                <LayoutComponent>
-                                    {/* <Cart items={cartItems} removeFromCart={removeFromCart} /> */}
-                                    <Router />
-                                </LayoutComponent>
-                            </AppContext.Provider>
+                            {/* <AppContext.Provider value={{ library, setLibrary, bag, setBag }}> */}
+                            <ToastContainer />
+                            <LayoutComponent>
+                                {/* <Cart items={cartItems} removeFromCart={removeFromCart} /> */}
+                                <Router />
+                            </LayoutComponent>
+                            {/* </AppContext.Provider> */}
                         </LoginContext.Provider>
                     </ShopContext.Provider >
                 </gameContext.Provider>

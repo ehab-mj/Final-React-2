@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeIcon from "@mui/icons-material/Mode";
@@ -19,6 +19,8 @@ import ROUTES from "../routes/ROUTES";
 import { upload, useAuth } from "./ui/firebase";
 import AuthGuard from "../guard/AuthGuard";
 import axios from "axios";
+import "./ProPic.css"
+import { getToken } from "../services/storageService";
 const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
   const { login } = useContext(LoginContext);
   const to = useLocation();
@@ -37,6 +39,8 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
   }
   /// Upload Profile Picture
   const [selectedFile, setSelectedFile] = useState(null);
+  const [image, setImage] = useState("");
+  const inputRef = useRef(null);
 
   const handleUpload = async () => {
     try {
@@ -53,18 +57,48 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
     }
   };
 
+  const handleImageClick = () => {
+    inputRef.current.click();
+  }
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setImage(event.target.files[0])
+  }
+
+  const handleUploadButtonClick = (file) => {
+    var myHeaders = new Headers();
+    const token = getToken();
+    myHeaders.append("Auth", `Bearer ${token}`)
+
+    var formData = new formData();
+    formData.append("file", file);
+
+    fetch("")
+    ///mnkml...
+  }
   return (
     <Container mt={4}>
       <Grid container spacing={2} justifyContent="center" style={{ boxShadow: "0px 0px 10px 0px #00000029" }}>
         <Grid item>
-          <input type="file" onChange={handleChange} />
           {/* <button disabled={loading || !photo} onClick={handleClick}>Upload</button> */}
-          <button type="button" onClick={handleUpload}>Upload</button>
-          <img src="./assets/imgs/Profile.png"
+          {/* <img src="./assets/imgs/Profile.png"
             width="305" height="205"
             onClick={handleUpload}
             onChange={handleChange}
-          />
+          /> */}
+          <div>
+            <div onClick={handleImageClick}>
+              {image ? <img src={URL.createObjectURL(image)} alt="" className="img-display-after" /> : <img src="./assets/imgs/Profile.png" alt="" className="img-display-before" />}
+              <input
+                type="file"
+                ref={inputRef}
+                onChange={handleImageChange}
+                style={{ display: "none" }}
+              />
+              <button className="image-upload">Upload</button>
+            </div>
+          </div>
         </Grid>
         <Grid item xs={12}>
           <Typography className="Font"
@@ -72,7 +106,7 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
             fontWeight={500}
           >
             Name:
-            {" "} {UserDetails.first} {UserDetails.last} <VerifiedRoundedIcon style={{ marginBottom: "-7px", color: "#1AA5B0" }} />
+            {" "} {UserDetails.first} {UserDetails.last} <VerifiedRoundedIcon style={{ marginBottom: "-7px", color: "#f15000" }} />
           </Typography>
           <Typography
             align="start"

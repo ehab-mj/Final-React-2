@@ -115,7 +115,7 @@ const EditUserPage = () => {
         marginTop: 8,
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "#1AA5B0" }}>
+      <Avatar sx={{ m: 1, bgcolor: "#f15000" }}>
         <ModeIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
@@ -144,7 +144,7 @@ const EditUserPage = () => {
           Submit
         </Button>
         <Grid item xs>
-          <Button variant="contained" color="secondary" style={{ background: "#1AA5B0" }}
+          <Button variant="contained" color="secondary" style={{ background: "#f15000" }}
             sx={{
               width: "100%",
               mt: 2,

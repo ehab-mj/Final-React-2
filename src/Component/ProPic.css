@@ -1,0 +1,10 @@
+.img-display-after {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+}
+
+.img-display-before {
+    height: 200px;
+    width: 200px;
+}

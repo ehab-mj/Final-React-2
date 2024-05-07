@@ -16,10 +16,38 @@ import useHandleCartClick from "../../hooks/useHandleCart";
 import './cart.css'
 import ShopContext from "../../store/ShopContext";
 import DeleteIcon from "@mui/icons-material/Delete";
-const FavPage = () => {
-    const { handleFavClick } = useHandleFavClick();
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import { Box } from "react-bootstrap-icons";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from "react-bootstrap";
+const Cart = ({
+    game,
+    title,
+    description,
+    category,
+    rating,
+    poster,
+    discount,
+    price,
+    img,
+    trailer,
+    id,
+    onDelete,
+    userId,
+    onEdit,
+    onFav,
+    onAddToCart,
+    onLike,
+    onCart,
+    videoUrl,
+    productId,
+    toggleVideo,
+    active,
+}) => {
+    // const { handleFavClick } = useHandleFavClick();
     const { handleEditClick } = useHandleEditGame();
-    const { handleCartClick } = useHandleCartClick();
+    // const { handleCartClick } = useHandleCartClick();
     const navigate = useNavigate();
     const { login } = useContext(LoginContext);
     const GameFav = useDataCard();
@@ -61,8 +89,6 @@ const FavPage = () => {
         fetchLikes();
     }, [setGamesCopy, setDataFromServer]);
 
-    if (!GameFav || !GameFav.length) {
-    }
 
     const handleEditGame = (id) => {
         handleEditClick(id);
@@ -72,9 +98,19 @@ const FavPage = () => {
         handleFavClick(id);
     };
 
-    const handleCartGame = async (id) => {
-        handleCartClick(id);
+    const handleFavClick = () => {
+        onFav(id);
     };
+
+    // const handleCartGame = async (id) => {
+    //     handleCartClick(id);
+    // };
+
+
+    const handleCartClick = () => {
+        onAddToCart(id);
+    };
+
     const handleDeleteGame = (id) => {
         const fetchInfo = async () => {
             try {
@@ -130,14 +166,19 @@ const FavPage = () => {
 
     ///
 
-    const { cart, setCart } = useContext(ShopContext);
+    const { cart, setCart, library, setLibrary } = useContext(ShopContext);
 
     const handleRemoveFromBag = game => {
         setCart(cart.filter(item => item._id !== game._id));
     };
+
+
+    if (!GameFav || !GameFav.length) {
+    }
+
     return (
         <Fragment>
-            <Grid container spacing={2} mt={5}>
+            {/* <Grid container spacing={2} mt={5}>
                 {GameFav.map(
                     (game, index) =>
                         GameFav[index].likes.some((id) => id === login._id) && (
@@ -168,75 +209,89 @@ const FavPage = () => {
                     direction="row"
                     m={3}
                 >
-                </Grid>
+                </Grid> */}
 
-                <section id="bag" className='bag'>
-                    <div className="container-fluid">
-                        <div className="row mb-3">
-                            <h1>My Bag</h1>
+            {/* <section id="bag" className='bag'> */}
+            <div className="container-fluid">
+                <div className="row mb-3">
+                    <h1>My Bag</h1>
+                </div>
+            </div>
+            <div className="row">
+                <div className="table-container">
+                    <Table className="table">
+                        <Thead>
+                            <Tr>
+                                {/* <th class="p-3 text-sm">No.</th> */}
+                                <th>Preview</th>
+                                <th>Remove</th>
+                                <th>Game</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Payment</th>
+                            </Tr>
+                        </Thead>
+
+                        <Tbody>
+                            {GameFav.map(
+                                (game, index) =>
+                                    GameFav[index].likes.some((id) => id === login._id) && (
+                                        <Tr className="shopBagItem">
+                                            {/* <th scope='row'>{index + 1}</th> */}
+                                            <Td>
+                                                <img src={game.image.url} alt='' />
+                                            </Td>
+                                            <Td>
+                                                {login && (
+                                                    <IconButton className={`addBag ${library.includes(game) ? 'active' : undefined}`} onClick={() => handleCartClick(game)}>
+                                                        <ShoppingCartIcon />
+                                                    </IconButton>
+                                                )}
+
+                                            </Td>
+                                            <Td>{game.title}</Td>
+                                            <Td>${game.price.toFixed(2)}</Td>
+                                            <Td>{game.discount * 100}%</Td>
+                                            <Td>${(game.price * (1 - game.discount)).toFixed(2)}</Td>
+                                        </Tr>
+                                    )
+                            )}
+                        </Tbody>
+
+                        <div className="row d-flex justify-content-between mt-5">
+                            {/* <div className="col-lg-2 d-flex align-items-center">
+                                        <p className="itemCount">Total Items: {itemCount}</p>
+                                    </div> */}
+
+                            <div className="col-lg-10 d-flex justify-content-end">
+                                {/* <div className="payment">
+                                            Total: ${totalPrice}
+                                            <a href="#">
+                                                Check Out <i className='bi bi-wallet-fill'></i>
+                                            </a>
+                                        </div> */}
+
+                                <div className="Box-CheckOut">
+                                    <button
+                                        to={title}
+                                        className="CheckOutBtn"
+                                    >
+                                        Check Out
+                                    </button>
+                                </div>
+                                {/* <a href="#">
+                                            Check Out <i className='bi bi-wallet-fill'></i>
+                                        </a> */}
+                            </div>
+
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="table-responsive">
-                            <table className="shopBagTable table table-borderless align-middle">
-                                <thead>
-                                    <tr>
-                                        <th class="p-3 text-sm">No.</th>
-                                        <th class="p-3 text-sm">Preview</th>
-                                        <th class="p-3 text-sm">Game</th>
-                                        <th class="p-3 text-sm">Price</th>
-                                        <th class="p-3 text-sm">Discount</th>
-                                        <th class="p-3 text-sm">Payment</th>
-                                        {/* class="p-3"col">Remove</th> */}
-                                    </tr>
-                                </thead>
-                                {GameFav.map(
-                                    (game, index) =>
-                                        GameFav[index].likes.some((id) => id === login._id) && (
-                                            <>
-                                                <tbody>
-
-                                                    <tr className="shopBagItem">
-                                                        <th scope='row'>{index + 1}</th>
-                                                        <td>
-                                                            <img src={game.image.url} alt='' className='img-fluid' />
-                                                        </td>
-                                                        <td className="title">{game.title}</td>
-                                                        <td>${game.price.toFixed(2)}</td>
-                                                        <td>{game.discount * 100}%</td>
-                                                        <td>${(game.price * (1 - game.discount)).toFixed(2)}</td>
-                                                        {/* <td>
-                                                            <IconButton href="#" onClick={() => handleRemoveFromBag(game)}>
-                                                                <DeleteIcon color="error"></DeleteIcon>
-                                                            </IconButton>
-                                                        </td> */}
-                                                    </tr>
-                                                </tbody>
-
-                                                <div className="row d-flex justify-content-between mt-5">
-                                                    <div className="col-lg-2 d-flex align-items-center">
-                                                        <p className="itemCount">Total Items: {GameFav.length}</p>
-                                                    </div>
-
-                                                    <div className="col-lg-10 d-flex justify-content-end">
-                                                        <div className="payment">
-                                                            Total: ${total}
-                                                            <a href="#">
-                                                                Check Out <i className='bi bi-wallet-fill'></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )
-                                )}
-                            </table >
-                        </div>
-                    </div>
-                </section>
-            </Grid>
+                    </Table >
+                </div>
+            </div>
+            {/* </section> */}
+            {/* </Grid> */}
         </Fragment >
     );
 };
 
-export default FavPage;
+export default Cart;

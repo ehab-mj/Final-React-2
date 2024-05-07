@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { Flip, Slide, toast } from "react-toastify";
 import filterContext from "../store/filterContext";
 import gameContext from "../store/gameContext";
+import useDataCard from "./useDataCard";
 const useHandleCartClick = () => {
     const { setDataFromServer } = useContext(filterContext);
     const handleCartClick = async (id) => {
-
         try {
             let { data } = await axios.patch("/games/" + id);
             setDataFromServer((currentDataFromServer) => {
