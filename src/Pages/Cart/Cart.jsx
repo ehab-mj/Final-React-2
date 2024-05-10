@@ -47,7 +47,7 @@ const Cart = ({
 }) => {
     // const { handleFavClick } = useHandleFavClick();
     const { handleEditClick } = useHandleEditGame();
-    // const { handleCartClick } = useHandleCartClick();
+    const { handleCartClick } = useHandleCartClick();
     const navigate = useNavigate();
     const { login } = useContext(LoginContext);
     const GameFav = useDataCard();
@@ -107,9 +107,9 @@ const Cart = ({
     // };
 
 
-    const handleCartClick = () => {
-        onAddToCart(id);
-    };
+    // const handleCartClick = () => {
+    //     onAddToCart(id);
+    // };
 
     const handleDeleteGame = (id) => {
         const fetchInfo = async () => {
@@ -176,6 +176,9 @@ const Cart = ({
     if (!GameFav || !GameFav.length) {
     }
 
+    const handleCartGame = async (id) => {
+        handleCartClick(id);
+    };
     return (
         <Fragment>
             {/* <Grid container spacing={2} mt={5}>
@@ -239,12 +242,28 @@ const Cart = ({
                                         <Tr className="shopBagItem">
                                             {/* <th scope='row'>{index + 1}</th> */}
                                             <Td>
-                                                <img src={game.image.url} alt='' />
+                                                {/* <img src={game.image.url} alt='' /> */}
+                                                <GameComponent style={{ height: "50px" }}
+                                                    id={game._id}
+                                                    title={game.title}
+                                                    price={game.price}
+                                                    description={game.description}
+                                                    trailer={game.trailer}
+                                                    rating={game.rating}
+                                                    discount={game.discount}
+                                                    img={game.image.url}
+                                                    onDelete={handleDeleteGame}
+                                                    Info={handleInfoClick}
+                                                    onEdit={handleEditGame}
+                                                    onFav={handleFavGame}
+                                                    onAddToCart={handleCartGame}
+                                                    onLike={game.liked}
+                                                    onCart={game.Carted}
+                                                />
                                             </Td>
                                             <Td>
                                                 {login && (
-                                                    <IconButton className={`addBag ${library.includes(game) ? 'active' : undefined}`} onClick={() => handleCartClick(game)}>
-                                                        <ShoppingCartIcon />
+                                                    <IconButton className={`addBag ${library.includes(game) ? 'active' : undefined}`} onAddToCart={handleCartGame}>
                                                     </IconButton>
                                                 )}
 
