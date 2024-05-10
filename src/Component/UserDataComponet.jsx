@@ -81,15 +81,9 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
     <Container mt={4}>
       <Grid container spacing={2} justifyContent="center" style={{ boxShadow: "0px 0px 10px 0px #00000029" }}>
         <Grid item>
-          {/* <button disabled={loading || !photo} onClick={handleClick}>Upload</button> */}
-          {/* <img src="./assets/imgs/Profile.png"
-            width="305" height="205"
-            onClick={handleUpload}
-            onChange={handleChange}
-          /> */}
           <div>
             <div onClick={handleImageClick}>
-              {image ? <img src={URL.createObjectURL(image)} alt="" className="img-display-after" /> : <img src="./assets/imgs/Profile.png" alt="" className="img-display-before" />}
+              {image ? <img src={URL.createObjectURL(image)} alt="" className="img-display-after" /> : <img src="./assets/user.jpg" alt="" className="img-display-before" />}
               <input
                 type="file"
                 ref={inputRef}
