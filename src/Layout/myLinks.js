@@ -1,13 +1,13 @@
 import ROUTES from "../routes/ROUTES";
 import HomeIcon from '@mui/icons-material/Home';
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
+import FeedIcon from '@mui/icons-material/Feed';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import { Tooltip } from "@mui/material";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { BiSolidCrown } from "react-icons/bi";
 const alwaysLinks = [{
 
   to: ROUTES.HOME, title:
@@ -24,7 +24,7 @@ const alwaysLinks = [{
 
   to: ROUTES.ABOUT, title:
     <Tooltip title="About">
-      <FeedbackIcon
+      <FeedIcon
         style={{
           width: "2.2rem",
           height: "3rem",
@@ -63,7 +63,7 @@ const bizLinks = [
   {
     to: ROUTES.MYGAMES, title:
       <Tooltip title="My Games">
-        <StyleRoundedIcon
+        <LibraryAddIcon
           style={{
             width: "2.2rem",
             height: "3rem",
@@ -76,7 +76,7 @@ const adminLinks = [
   {
     to: ROUTES.SANDBOX, title:
       <Tooltip title="sandbox">
-        <AccountBalanceIcon
+        <BiSolidCrown
           style={{
             width: "2.2rem",
             height: "3rem",

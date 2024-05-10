@@ -3,16 +3,13 @@ import LoginContext from "../../../store/loginContext";
 import ROUTES from "../../../routes/ROUTES";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import HomeIcon from '@mui/icons-material/Home';
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
-import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRounded';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FeedIcon from '@mui/icons-material/Feed';
+import { BiSolidCrown } from "react-icons/bi";
 import {
     Box,
     List,
@@ -138,7 +135,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
                 <ListItem key="About" disablePadding>
                     <ListItemButton onClick={handleAboutClick}>
                         <ListItemIcon>
-                            <FeedbackIcon />
+                            <FeedIcon />
                         </ListItemIcon>
                         <ListItemText primary="About" />
                     </ListItemButton>
@@ -166,7 +163,7 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
                     <ListItem key="My Games" disablePadding>
                         <ListItemButton onClick={handleMGamesClick}>
                             <ListItemIcon>
-                                <StyleRoundedIcon />
+                                <LibraryAddIcon />
                             </ListItemIcon>
                             <ListItemText primary="My Games" />
                         </ListItemButton>

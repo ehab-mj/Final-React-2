@@ -1,42 +1,19 @@
 import Typography from "@mui/material/Typography";
-import { Container, Grid, Box } from "@mui/material";
+import { Container, Grid, Box, IconButton } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './About.css'
+import fuse from "./fuse.png";
 const AboutUsPage = () => {
     return (
 
-        <section class="home" id="home">
-            <div class="home-content">
-                <h3>Hello, It's</h3>
-                <h1>Ehab Majdub Portfolio</h1>
-                <h3>And I'm a <span class="typeEffect"></span></h3>
-
-                <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
-                {/* <script>
-                    var typed = new Typed(".typeEffect", {
-                        strings: ["Graphic Designer", "Web Developer", "Logo Maker", "Programmer"],
-                    typeSpeed: 100,
-                    backSpeed: 80,
-                    looped: true,
-                    backDelay: 2000,
-                });
-                </script> */}
-
-                <div class="social-media">
-                    <ul>
-                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                        <a href="#"><i class='bx bxs-phone'></i></a>
-                        <a href="#"><i class='bx bxl-whatsapp'></i></a>
-                        <a href="#"><i class='bx bxs-location-plus'></i></a>
-                    </ul>
+        <section className="A-about">
+            <div className="A-Context">
+                <img src={fuse} alt="" />
+                <div className="A-text">
+                    <h1>About</h1>
+                    <p>Game<span className="A-span">Shop</span> is a place where recreational games are stored. Game stores are highly specialized shops selling entertainment products to a targeted niche. Spanning a range of niches, from video games to living room games to role playing games, well-managed game stores can attract a very loyal customer base. Starting a game store business can be an exciting way to achieve your entrepreneurial dreams while doing something that you love.</p>
                 </div>
-                <a href="./CV.pdf" class="btn">Download CV</a>
-            </div>
-
-            <div class="home-img">
-                <img src="images/vetor.png" alt="" />
             </div>
         </section>
     );

@@ -1,14 +1,15 @@
 import ROUTES from "../../routes/ROUTES";
-import FeedbackIcon from '@mui/icons-material/Feedback';
+import FeedIcon from '@mui/icons-material/Feed';
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
 import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import { BiSolidCrown } from "react-icons/bi";
 const alwaysButtons = [
   {
-    to: ROUTES.ABOUT, title: "About Us", icon: <FeedbackIcon />,
+    to: ROUTES.ABOUT, title: "About", icon: <FeedIcon />,
   },
 ];
 const loggedInButtons = [
@@ -16,11 +17,11 @@ const loggedInButtons = [
 ];
 
 const bizButtons = [
-  { to: ROUTES.MYGAMES, title: "MYGAMES", icon: <StyleRoundedIcon /> },
+  { to: ROUTES.MYGAMES, title: "My Games", icon: <LibraryAddIcon /> },
 ];
 
 const adminButtons = [
-  { to: ROUTES.SANDBOX, title: "UserManage", icon: <AdminPanelSettingsIcon /> },
+  { to: ROUTES.SANDBOX, title: "Admin", icon: <BiSolidCrown /> },
 ];
 
 const loggedOutButtons = [

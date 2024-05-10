@@ -140,7 +140,7 @@ const MyGamesPage = () => {
               img={game.image.url}
               price={game.price}
               discount={game.discount}
-
+              trailer={game.trailer}
               rating={game.rating}
               Info={handleInfoClick}
               onEdit={handleEditGame}
