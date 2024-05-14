@@ -8,6 +8,9 @@ import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import LoginContext from "../store/loginContext";
 import './gameCard.css'
+import './gameCard2.css'
+import './gameCard3.css'
+import './gameCard4.css'
 import {
   Card,
   CardHeader,
@@ -60,13 +63,12 @@ const GameComponent = ({
 
 }) => {
   const login = useContext(LoginContext);
-  // const { library, setLibrary, bag, setBag } = useContext(AppContext);
   const to = useLocation();
   const { cart, setCart, library, setLibrary } = useContext(ShopContext);
   const navigate = useNavigate();
   const [cartMessage, setCartMessage] = useState('');
   const GameFav = useDataCard();
-  // const { addToCart, cartItems } = useContext(ShopContext);
+
   const handleDetails = () => {
     navigate(`${ROUTES.DETAILS}/${id}`);
   }
@@ -117,7 +119,6 @@ const GameComponent = ({
   };
 
   const [games, setGames] = useState([]);
-  // const [cart, setCart] = useState(1);
 
   const fetchCards = async () => {
     try {
@@ -184,7 +185,6 @@ const GameComponent = ({
         </div>
 
         <div className="gameTitle mt-4 mb-3">{title}</div>
-        {/* <div className="Des">{description}</div> */}
 
         <div className="gamePrice">
           {discount != 0 && (
@@ -196,9 +196,6 @@ const GameComponent = ({
               <span className="prevPrice">$
                 {price.toFixed(2)}
               </span>
-              {/* <span className="prevPrice">$
-                {game.price.toFixed(2)}
-              </span> */}
             </>
           )}
 
@@ -212,17 +209,6 @@ const GameComponent = ({
             <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
           </IconButton>
         )}
-
-        {/* {login && (
-          <IconButton className={`like ${library.includes(game) ? 'active' : undefined}`} onClick={handleFavClick}>
-            <ShoppingCartIcon color={onLike ? 'warning' : "inherit"} />
-          </IconButton>
-        )} */}
-
-
-        {/* <a href="#" className="addBag" onClick={() => handleAddToBag(game)}>
-          <i className="bi bi-cart-plus"></i>
-        </a> */}
 
         <Box>
           {((login.isBusiness && AdminType) ||
@@ -240,86 +226,11 @@ const GameComponent = ({
         </Box>
 
         <Box>
-          {/* <IconButton onClick={handlePhone}>
-            <LocalPhoneIcon />
-          </IconButton> */}
-
-          {/* {login && (
-            <IconButton onClick={handleFavClick}>
-              <BookmarkRoundedIcon color={onLike ? "error" : "inherit"} />
-            </IconButton>
-          )}
-          <button onClick={handleAddToCart}>Add to Cart</button> */}
-
         </Box>
 
-        {/* onClick={handleDetails}
-          component="img"
-          image={img}
-          alt="image" */}
       </div>
     </div >
   );
-  {/* <CardHeader className="gameTitle mt-4 mb-3" title={title} subheader={subtitle}>
-      </CardHeader>
-
-      <Divider></Divider> */}
-
-  {/* <CardContent> */ }
-
-  {/* <Typography>
-          <Typography component="span" fontWeight={700}>
-            Phone:
-          </Typography>
-          {""} {phone}
-        </Typography> */}
-
-  {/* <Typography>
-          <Typography component="span" fontWeight={700}>
-            Address:
-          </Typography>
-          {""} {address.city}
-        </Typography> */}
-
-  {/* <Typography>
-          <Typography component="span" fontWeight={700}>
-            Card number:
-          </Typography>
-          {""} {cardNumber}
-        </Typography> */}
-
-  {/* <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-
-          <Box>
-            {((AdminType) ||
-              to.pathname === ROUTES.MYGAMES) && (
-                <IconButton onClick={handleDeleteClick}>
-                  <DeleteIcon />
-                </IconButton>
-              )}
-            {((login.isBusiness && AdminType) ||
-              to.pathname === ROUTES.MYGAMES) && (
-                <IconButton onClick={handleEditClick}>
-                  <ModeIcon />
-                </IconButton>
-              )}
-          </Box>
-
-          <Box>
-            <IconButton onClick={handlePhone}>
-              <LocalPhoneIcon />
-            </IconButton>
-
-            {login && (
-              <IconButton onClick={handleFavClick}>
-                <BookmarkRoundedIcon color={onLike ? "error" : "inherit"} />
-              </IconButton>
-            )}
-          </Box>
-
-        </Box> */}
-
-  {/* </CardContent> */ }
 };
 
 GameComponent.propTypes = {
@@ -342,14 +253,4 @@ GameComponent.propTypes = {
   onCart: PropTypes.bool,
 };
 
-// GameComponent.defaultProps = {
-//   img: "https://img.redro.pl/plakaty/default-profile-picture-avatar-photo-placeholder-vector-illustration-700-216668545.jpg",
-//   title: "title default",
-//   category: "Action",
-//   rating: 5,
-//   description: "description",
-//   discount: 0.5,
-//   price: 0,
-//   trailer: "https://www.youtube.com/embed/S9STizATKjE?si=S5iKxB0AGgqNJupo"
-// };
 export default GameComponent;

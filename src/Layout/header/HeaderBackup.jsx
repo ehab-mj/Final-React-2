@@ -254,28 +254,16 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
   );
 
   return (
-    ///////
     <Box sx={{ flexGrow: 1, mb: 2 }}>
-      {/* <header
-        className={`header ${isScrolled && "bg-[#141414]"} hover:bg-[#141414] background:""`}
-      > */}
       <AppBar className="navbar-container" position="static" style={{ background: "#222222" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <DashboardCustomizeRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
-              {/* <img onClick={handleHomeClick}
-                src={ishover ? "./assets/imgs/LogoHover.png" : "./assets/imgs/Logo.png"}
-                alt="logo"
-                width="70" height="70"
-                onMouseEnter={() => sethover(true)}
-                onMouseLeave={() => sethover(false)}
-              /> */}
+            <Link to={ROUTES.HOME} sx={{ display: { xs: 'none', md: 'flex', cursor: 'pointer' }, mr: 1 }} >
               <Typography>
                 <span className="Game">Game</span><span className="Shop">Shop</span>
 
               </Typography>
-            </Box>
+            </Link>
             <Links />
             <FilterComponent />
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }, mr: 1 }}>
@@ -294,7 +282,7 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Profile">
-                <Link
+                <Link className='UserName'
                   to={ROUTES.PROFILE}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
@@ -311,7 +299,7 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
                     }}
                   >
 
-                    <AccountCircleRoundedIcon style={{ width: "2rem", height: "2rem", justifyContent: "center", textAlign: "center", display: "flex", margin: "0 auto" }} />
+                    <AccountCircleRoundedIcon className='UserName' style={{ width: "2rem", height: "2rem", justifyContent: "center", textAlign: "center", display: "flex", margin: "0 auto" }} />
                     {UserInfo && UserInfo.name && UserInfo.name.first
                       ? `${UserInfo.name.first} ${UserInfo.name.last}`
                       : ""}
@@ -333,13 +321,6 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
               <MoreVertIcon />
             </IconButton>
 
-            {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton sx={{ p: 0 }}>
-                <DashboardCustomizeRoundedIcon alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-          </Box> */}
             <Box sx={{ flexGrow: 0 }}>
               <ThemeProvider theme={darkMode}>
                 <IconButton sx={{ p: 0 }} size="large" color="" onClick={handleLogOut}>
@@ -357,20 +338,7 @@ const HeaderBackup = ({ isDarkTheme, onThemeChange, medias }) => {
           onCloseDrawer={handleCloseDrawerClick}
         />
 
-        {/* <div className="absolute top-0 left-0 h-[95vh] w-screen -z-10">
-        <img
-          src={`${baseUrl}/${createRandomMedia?.backdrop_path || createRandomMedia?.poster_path
-            }`}
-          alt="Banner"
-          layout="fill"
-          objectFit="cover"
-        />
-        <div className="absolute w-full h-32 bg-gradient-to-t from-gray-100 to-transparent bottom-0 z-20" />
-      </div> */}
-
       </AppBar >
-
-      {/* </header> */}
     </Box >
   );
 };

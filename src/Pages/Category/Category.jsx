@@ -98,11 +98,6 @@ function Categories({ games, reference }) {
                                 price={game.price}
                                 img={game.image.url}
                                 trailer={game.trailer}
-                                // onDelete={handleDeleteGame}
-                                // Info={handleInfoClick}
-                                // onEdit={handleEditGame}
-                                // onFav={handleFavGame}
-                                // onAddToCart={handleCartClick}
                                 onLike={game.liked}
                                 onCart={game.Carted}
                                 key={game._id} game={game} />

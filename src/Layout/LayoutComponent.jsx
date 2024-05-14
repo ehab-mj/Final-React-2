@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import FooterComponent from "./footer/FooterComponent";
-import HeaderComponent from "./header/HeaderComponent";
 import MainComponent from "./main/MainComponent";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import tmc from "twin-moon-color";
@@ -10,7 +9,6 @@ import { getToken } from "../services/storageService";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import HeaderBackup from "./header/HeaderBackup";
-import img from "./header/ui/CssHeader/img/img1.png";
 import useDataCard from "../hooks/useDataCard";
 const LayoutComponent = ({ children }) => {
   const [isDarkTheme, SetDarkTheme] = useState(false);

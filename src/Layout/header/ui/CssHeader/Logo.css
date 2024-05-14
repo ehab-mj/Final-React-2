@@ -13,3 +13,25 @@
     font-size: 1.7rem;
     color: var(--Red);
 }
+
+.UserName {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .Game {
+        display: none;
+    }
+
+    .Shop {
+        display: none;
+    }
+
+    .UserName {
+        display: none;
+    }
+
+    .Profile {
+        display: none;
+    }
+}

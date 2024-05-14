@@ -31,7 +31,19 @@ const alwaysLinks = [{
         }}
       />
     </Tooltip>
-}
+},
+  // {
+
+  //   to: ROUTES.CATEGORY, title:
+  //     <Tooltip title="Category">
+  //       <FeedIcon
+  //         style={{
+  //           width: "2.2rem",
+  //           height: "3rem",
+  //         }}
+  //       />
+  //     </Tooltip>
+  // }
 ];
 
 const loggedInLinks = [
