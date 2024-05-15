@@ -1,13 +1,5 @@
-// import { Typography, Grid, Box, Slide, List, CssBaseline, Paper, ImageList } from "@mui/material";
 import PropTypes from "prop-types";
 import "../header/ui/CssHeader/Background.css"
-// import "../header/ui/CssHeader/Text.css"
-// import "../header/ui/CssHeader/SearchBox.css"
-// import { ArrowRightCircle } from 'react-bootstrap-icons';
-// import React, { Fragment, useEffect, useState } from "react";
-// import { Container, Row, Col } from "react-bootstrap";
-// import TrackVisibility from "react-on-screen";
-// import headerImg from "../header/ui/CssHeader/img/header.svg";
 import React, { useEffect, useRef, useState } from "react";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,7 +8,6 @@ import "react-slideshow-image/dist/styles.css";
 import { Slide } from "react-slideshow-image";
 import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import img from "./ui/CssHeader/img/img1.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./HomeImg.css"
 import StarIcon from '@mui/icons-material/Star';
@@ -59,15 +50,11 @@ export const PageHeader = ({ medias, id, }) => {
 
                   <span className="posterImage__rating">
                     <GameRating rating={game.rating} />
-                    {/* {game ? game.rating : ""} */}
-                    {/* <StarIcon className="fas fa-star" />{" "} */}
-                    {/* <i className="fas fa-star" />{" "} */}
                   </span>
                   <span className="posterImage__discount">
                     <i >{game.discount * 100}%</i>
                   </span>
                 </div>
-                {/* <div className="posterImage__description">{game ? game.description : ""}</div> */}
               </div>
             </div>
           ))

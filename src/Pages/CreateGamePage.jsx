@@ -6,7 +6,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import axios from "axios";
 import TextInputComponent from "../Component/TextInputComponent";
 import { Bounce, Flip, toast } from "react-toastify";
-
+import { FaFileArrowUp } from "react-icons/fa6";
 const CreateGamePage = () => {
   const {
     handleInputsChange,
@@ -60,8 +60,8 @@ const CreateGamePage = () => {
         marginTop: 8,
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "#1AA5B0" }}>
-        <AutoAwesomeIcon />
+      <Avatar sx={{ m: 1, bgcolor: "#f15000" }}>
+        <FaFileArrowUp />
       </Avatar>
       <Typography component="h1" variant="h5">
         Create New Game

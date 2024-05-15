@@ -73,7 +73,7 @@ const EditGamePage = () => {
     >
       <Avatar sx={{
         m: 1,
-        bgcolor: "#1AA5B0"
+        bgcolor: "#f15000"
       }}>
         <EditNoteRoundedIcon />
       </Avatar>
@@ -124,7 +124,7 @@ const EditGamePage = () => {
             <Button
               variant="contained"
               color="secondary"
-              style={{ background: "#1AA5B0" }}
+              style={{ background: "#f15000" }}
               sx={{
                 mb: 2,
                 mt: 2,
