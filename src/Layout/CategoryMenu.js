@@ -6,27 +6,37 @@ const CategoryMenu = [
     },
     {
         _id: 2,
-        name: 'RPG',
+        name: 'Action',
         active: false,
     },
     {
         _id: 3,
-        name: 'MOBA',
+        name: 'Shooter',
         active: false,
     },
     {
         _id: 4,
-        name: 'Battle',
+        name: 'Battle Royale',
         active: false,
     },
     {
         _id: 5,
-        name: 'Racing',
+        name: 'Open World',
         active: false,
     },
     {
         _id: 6,
-        name: 'Fighting',
+        name: 'RPG',
+        active: false,
+    },
+    {
+        _id: 7,
+        name: 'Horror',
+        active: false,
+    },
+    {
+        _id: 8,
+        name: 'Racing',
         active: false,
     },
 ];
