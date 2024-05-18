@@ -15,15 +15,11 @@ const FilterComponent = () => {
     const gamesSearch = CopyGame.filter((game) => {
       return game.title.includes(inputValue);
     });
-    // const userSearch = userCopy.filter((user) => {
-    //   return user.name.first.includes(inputValue);
-    // });
+
     if (!inputValue || inputValue.length < 1) {
       setDataFromServer(CopyGame);
-      // setuserInfo(userCopy);
       return;
     }
-    // setuserInfo(userSearch);
     setDataFromServer(gamesSearch);
   };
 

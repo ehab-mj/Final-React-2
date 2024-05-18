@@ -81,9 +81,6 @@ function DetailsTest() {
 
                             {isOpen && (
                                 <div className="popup-content">
-                                    {/* <button className='pause' onClick={togglePopup}>
-                                        &times;
-                                    </button> */}
                                     <div className={`video ${active ? "active" : undefined}`}>
                                         <iframe
                                             width="500"
@@ -96,17 +93,6 @@ function DetailsTest() {
 
                                         </iframe>
                                     </div>
-                                    {/* <Box mt={2} mb={2}>
-                                        <iframe
-                                            title="video"
-                                            width="560"
-                                            height="315"
-                                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
-                                            src={trailer}
-                                            frameBorder="0"
-                                            allowFullScreen
-                                        ></iframe>
-                                    </Box> */}
                                 </div>
                             )}
                         </div>
@@ -127,52 +113,6 @@ function DetailsTest() {
                             </IconButton>
                         )}
                 </Box>
-
-                {/* <div className="game">
-                <div className="game__intro">
-                    <img className="game__backdrop" src={image} />
-                </div>
-            </div > */}
-
-                {/* <div className="game__detail">
-                    <div className="game__detailLeft">
-                        <div className="game__posterBox">
-                            <img className="game__poster" src={image} />
-                        </div>
-                    </div>
-                    <div className="game__detailRight">
-                        <div className="game__detailRightTop">
-                            <div className="game__name">{title}</div>
-                            <div className="game__tagline">{price}</div>
-                            <div className="game__rating">
-                                {rating} <i class="fas fa-star" />
-                                <span className="game__voteCount">{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>
-                            </div>
-                            <div className="game__runtime">{currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}</div>
-                            <div className="game__releaseDate">{currentMovieDetail ? "Release date: " + currentMovieDetail.release_date : ""}</div>
-                            <div className="game__genres">
-                                {
-                                    currentMovieDetail && currentMovieDetail.genres
-                                        ?
-                                        currentMovieDetail.genres.map(genre => (
-                                            <><span className="game__genre" id={genre.id}>{genre.name}</span></>
-                                        ))
-                                        :
-                                        ""
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-
-                {/* <div className="game__detailRightBottom">
-                <div className="synopsisText">Synopsis</div>
-                <div>{currentMovieDetail ? currentMovieDetail.overview : ""}</div>
-            </div> */}
-
-                {/* Movie Details */}
-                {/* <ImageHeader imgPath={tmdbConfigs.backdropPath(image.backdrop_path || image.poster_path)} /> */}
             </Grid >
         </Grid >
     )

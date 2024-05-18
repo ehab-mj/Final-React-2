@@ -6,17 +6,13 @@ import GameComponent from "../Component/GameComponent";
 import PageHeader from "../Layout/header/PageHeader";
 import useHandleEditGame from "../hooks/useHandleEdit";
 import useHandleFavClick from "../hooks/useHandleFav";
-// import normalizeFav from "../services/normalizeFavs";
 import filterContext from "../store/filterContext";
 import useDataCard from "../hooks/useDataCard";
 import ROUTES from "../routes/ROUTES";
 import LoginContext from "../store/loginContext";
 import { Bounce, Flip, toast } from "react-toastify";
 import normalizeGames from "./Favorite/normalizeFav";
-
 import gameContext from "../store/gameContext";
-import { GameSlide } from "./GameSlide";
-import Categories from "./Category/Category";
 import useHandleCartClick from "../hooks/useHandleCart";
 import Contact from "./ContactUs/Contact";
 const HomePage = () => {
@@ -30,8 +26,6 @@ const HomePage = () => {
   let { setDataFromServer, dataFromServer, setGamesCopy, CopyGame, } =
     useContext(filterContext);
 
-  // let { dataFromServer, setDataFromServer, setGamesCopy } =
-  //   useContext(filterContext);
   const handleDeleteGame = (id) => {
     const fetchInfo = async () => {
       try {
@@ -100,11 +94,6 @@ const HomePage = () => {
   }
 
   const [cart, setCart] = useState([]);
-  // let dataFromServerFiltered = normalizeGames(
-  //   dataFromServer,
-  //   login ? login._id : undefined
-  // );
-  // if (!dataFromServerFiltered || !dataFromServerFiltered.length) {
   return (
     <div>
       <PageHeader />
@@ -113,11 +102,6 @@ const HomePage = () => {
           <Grid>
           </Grid>
         </Link>
-        {/* <ul>
-          {cart.map((item, index) => (
-            <li key={index}>{item.name}</li>
-          ))}
-        </ul> */}
         {GameFav.slice(0, count).map((game, index) => (
           <Grid item lg={4} md={6} xs={12} key={"carsGame" + index}>
             <GameComponent
@@ -141,7 +125,6 @@ const HomePage = () => {
           </Grid>
         ))}
 
-        {/* <Contact /> */}
         <Grid item lg={12} md={12} xs={12}>
           <Contact />
         </Grid>

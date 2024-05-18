@@ -104,7 +104,6 @@ const GameDetailsComponent = ({
 
     return (
         <Box >
-
             <Box className="Tbg">
                 <div className="gradient"></div>
                 <img
@@ -176,12 +175,9 @@ const GameDetailsComponent = ({
 
                 <div className="T-detailRight">
                     <div className="T-detailRightTop">
-                        {/* Title */}
                         <h1 className=".T.name ">
                             {title}
                         </h1>
-                        {/* flex items */}
-                        {/* <div className="flex items-center gap-4 font-medium text-dryGray"> */}
                         <div className="T-rating">
                             {rating} <StarIcon className="star" />
                         </div>
@@ -191,10 +187,6 @@ const GameDetailsComponent = ({
                         <div className="T-synopsisText">
                             {description}
                         </div>
-                        {/* <ModeIcon /> */}
-                        {/* </div> */}
-                        {/* description */}
-                        {/* <p className="text-text text-sm leading-7"> {description}</p> */}
 
                         <div className={`video ${active ? "active" : undefined}`}>
                             <iframe

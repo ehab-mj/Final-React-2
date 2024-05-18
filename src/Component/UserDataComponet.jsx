@@ -24,9 +24,7 @@ import { getToken } from "../services/storageService";
 const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
   const { login } = useContext(LoginContext);
   const to = useLocation();
-  // const handleDeleteClick = () => {
-  //   onDelete(UserDetails._id);
-  // };
+
   const handleEditClick = () => {
     onEdit(UserDetails._id);
   };
@@ -37,7 +35,7 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
   function handleChange(event) {
     setSelectedFile(event.target.files[0]);
   }
-  /// Upload Profile Picture
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [image, setImage] = useState("");
   const inputRef = useRef(null);
@@ -64,18 +62,6 @@ const UserDataComponet = ({ UserDetails, onDelete, onEdit }) => {
     const file = event.target.files[0];
     console.log(file);
     setImage(event.target.files[0])
-  }
-
-  const handleUploadButtonClick = (file) => {
-    var myHeaders = new Headers();
-    const token = getToken();
-    myHeaders.append("Auth", `Bearer ${token}`)
-
-    var formData = new formData();
-    formData.append("file", file);
-
-    fetch("")
-    ///mnkml...
   }
   return (
     <Container mt={4}>

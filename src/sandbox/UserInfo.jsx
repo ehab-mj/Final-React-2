@@ -10,8 +10,6 @@ import LoginContext from "../store/loginContext";
 
 const UserInfo = () => {
     const { UserInfo, setuserInfo, setUserCopy } = useContext(usersContext);
-    // const [reset] = useState(true);
-    // const [count] = useState(12);
 
     const handleDelete = async (id) => {
         const isCheck = window.confirm(
@@ -67,7 +65,6 @@ const UserInfo = () => {
     }, [setuserInfo, setUserCopy]);
 
     if (!Array.isArray(UserInfo)) {
-        // Handle the case where userInfo is not an array
         return <div>Users information pending...</div>;
     }
 

@@ -25,21 +25,12 @@ const urlSchema = Joi.object({
 const altSchema = Joi.object({
   alt: Joi.string().min(2).max(256).allow(""),
 });
-const watchLinkSchema = Joi.object({
-  watchLink: Joi.string()
-    .uri({ scheme: ["http", "https"] })
-    .min(14)
-    .required(),
-});
 const trailerSchema = Joi.object({
   trailer: Joi.string()
     .uri({ scheme: ["http", "https"] })
     .min(14)
     .allow(""),
 });
-// const activeSchema = Joi.object({
-//   active: Joi.boolean()
-// });
 
 const validateTitle = (title) => titleSchema.validate(title);
 const validateDescription = (description) =>
@@ -48,19 +39,15 @@ const validateCategorySchema = (category) => categorySchema.validate(category);
 const validateRating = (rating) => ratingSchema.validate(rating);
 const validateDiscount = (discount) => discountSchema.validate(discount);
 const validatePrice = (price) => priceSchema.validate(price);
-const validateWatchLinkSchema = (watchLink) =>
-  watchLinkSchema.validate(watchLink);
 const validateTrailerSchema = (trailer) => trailerSchema.validate(trailer);
 const validateUrl = (url) => urlSchema.validate(url);
 const validateAlt = (alt) => altSchema.validate(alt);
 const validateTrailer = (trailer) => trailerSchema.validate(trailer);
-// const validateActive = (active) => activeSchema.validate(active);
 
 const validateSchema = {
   title: validateTitle,
   description: validateDescription,
   category: validateCategorySchema,
-  watchLink: validateWatchLinkSchema,
   trailer: validateTrailerSchema,
   rating: validateRating,
   discount: validateDiscount,
@@ -68,7 +55,6 @@ const validateSchema = {
   url: validateUrl,
   alt: validateAlt,
   trailer: validateTrailer,
-  // active: validateActive,
 };
 
 export default validateSchema;

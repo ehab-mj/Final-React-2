@@ -166,7 +166,7 @@ const DetailsPage = ({ city, street, houseNumber }) => {
                     fontSize: "1rem",
                     background: "#1AA5B0",
                   }}>
-                  {/* sometimes the Google map api not working shows errors on screen i think my pc cant run the api  */}
+
                   <div style={{ height: '100vh', width: '100%' }}>
                     <LoadScript googleMapsApiKey={"AIzaSyCKxCRfh3SS1NNLIh91nbMVASCf6gB6ptY"}>
                       <GoogleMap
@@ -178,15 +178,6 @@ const DetailsPage = ({ city, street, houseNumber }) => {
                       </GoogleMap>
                     </LoadScript>
                   </div>
-                  {/* <div style={{ height: '100vh', width: '100%' }}>
-                    <iframe
-                      mapContainerStyle={containerStyle}
-                      zoom={10}
-                      center={location}
-                      src={`https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20${street},%20${city},%20${houseNumber}+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed`}>
-                      <a href="https://www.gps.ie/">gps systems</a>
-                    </iframe>
-                  </div> */}
                 </Box>
               </Grid>
             </Grid>

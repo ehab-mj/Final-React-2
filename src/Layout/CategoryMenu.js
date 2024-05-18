@@ -1,44 +1,40 @@
-const CategoryMenu = [
+const items = [
     {
-        _id: 1,
         name: 'All',
-        active: true,
+        category: 'All',
     },
     {
-        _id: 2,
         name: 'Action',
-        active: false,
+        category: 'Action',
     },
     {
-        _id: 3,
         name: 'Shooter',
-        active: false,
+        category: 'Shooter',
     },
     {
-        _id: 4,
         name: 'Battle Royale',
-        active: false,
+        category: 'Battle Royale',
     },
     {
-        _id: 5,
         name: 'Open World',
-        active: false,
+        category: 'Open World',
     },
     {
-        _id: 6,
         name: 'RPG',
-        active: false,
+        category: 'RPG',
     },
     {
-        _id: 7,
         name: 'Horror',
-        active: false,
+        category: 'Horror',
     },
     {
-        _id: 8,
         name: 'Racing',
-        active: false,
+        category: 'Racing',
+    },
+    {
+        name: 'Sports',
+        category: 'Sports',
     },
 ];
 
-export default CategoryMenu;
+export default items;

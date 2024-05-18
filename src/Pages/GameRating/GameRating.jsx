@@ -23,7 +23,6 @@ function GameRating({ rating }) {
     return (
         <div className='gameRating'>
             {stars.map((star, index) => (
-                // <i className='bi bi-star-fill' key={index}></i>
                 <StarIcon className='bi bi-star-fill' key={index} />
             ))}
         </div>

@@ -181,40 +181,6 @@ const Cart = ({
     };
     return (
         <Fragment>
-            {/* <Grid container spacing={2} mt={5}>
-                {GameFav.map(
-                    (game, index) =>
-                        GameFav[index].likes.some((id) => id === login._id) && (
-                            <Grid item lg={4} md={6} xs={12} key={"carsGame" + index}>
-                                <GameComponent
-                                    id={game._id}
-                                    title={game.title}
-                                    price={game.price}
-                                    description={game.description}
-                                    rating={game.rating}
-                                    discount={game.discount}
-                                    img={game.image.url}
-                                    onDelete={handleDeleteGame}
-                                    Info={handleInfoClick}
-                                    onEdit={handleEditGame}
-                                    onFav={handleFavGame}
-                                    onAddToCart={handleCartGame}
-                                    onLike={game.liked}
-                                    onCart={game.Carted}
-                                />
-                            </Grid>
-                        )
-                )}
-                <Grid
-                    container
-                    justifyContent="center"
-                    alignItems="center"
-                    direction="row"
-                    m={3}
-                >
-                </Grid> */}
-
-            {/* <section id="bag" className='bag'> */}
             <div className="container-fluid">
                 <div className="row mb-3">
                     <h1>My Bag</h1>
@@ -225,7 +191,6 @@ const Cart = ({
                     <Table className="table">
                         <Thead>
                             <Tr>
-                                {/* <th class="p-3 text-sm">No.</th> */}
                                 <th>Preview</th>
                                 <th>Remove</th>
                                 <th>Game</th>
@@ -240,9 +205,7 @@ const Cart = ({
                                 (game, index) =>
                                     GameFav[index].likes.some((id) => id === login._id) && (
                                         <Tr className="shopBagItem">
-                                            {/* <th scope='row'>{index + 1}</th> */}
                                             <Td>
-                                                {/* <img src={game.image.url} alt='' /> */}
                                                 <GameComponent style={{ height: "50px" }}
                                                     id={game._id}
                                                     title={game.title}
@@ -278,17 +241,8 @@ const Cart = ({
                         </Tbody>
 
                         <div className="row d-flex justify-content-between mt-5">
-                            {/* <div className="col-lg-2 d-flex align-items-center">
-                                        <p className="itemCount">Total Items: {itemCount}</p>
-                                    </div> */}
 
                             <div className="col-lg-10 d-flex justify-content-end">
-                                {/* <div className="payment">
-                                            Total: ${totalPrice}
-                                            <a href="#">
-                                                Check Out <i className='bi bi-wallet-fill'></i>
-                                            </a>
-                                        </div> */}
 
                                 <div className="Box-CheckOut">
                                     <button
@@ -298,17 +252,12 @@ const Cart = ({
                                         Check Out
                                     </button>
                                 </div>
-                                {/* <a href="#">
-                                            Check Out <i className='bi bi-wallet-fill'></i>
-                                        </a> */}
                             </div>
 
                         </div>
                     </Table >
                 </div>
             </div>
-            {/* </section> */}
-            {/* </Grid> */}
         </Fragment >
     );
 };

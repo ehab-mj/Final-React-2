@@ -27,16 +27,6 @@ function App() {
     const [cards, setGames] = useState([]);
     const [cart, setCart] = useState([]);
 
-    // const addToCart = (itemId) => {
-    //     const itemToAdd = dataFromServer.find(item => item.id === itemId);
-    //     setCartItems(prevItems => [...prevItems, itemToAdd]);
-    // };
-
-    // const removeFromCart = (itemId) => {
-    //     setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
-    // };
-
-
     return (
         <usersContext.Provider
             value={{ userCopy, setUserCopy, UserInfo, setuserInfo }}
@@ -50,13 +40,10 @@ function App() {
                 >
                     <ShopContext.Provider value={{ cart, setCart, library, setLibrary }}>
                         <LoginContext.Provider value={{ login, setLogin }}>
-                            {/* <AppContext.Provider value={{ library, setLibrary, bag, setBag }}> */}
                             <ToastContainer />
                             <LayoutComponent>
-                                {/* <Cart items={cartItems} removeFromCart={removeFromCart} /> */}
                                 <Router />
                             </LayoutComponent>
-                            {/* </AppContext.Provider> */}
                         </LoginContext.Provider>
                     </ShopContext.Provider >
                 </gameContext.Provider>

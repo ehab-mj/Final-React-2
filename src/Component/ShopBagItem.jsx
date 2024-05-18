@@ -9,8 +9,6 @@ import { Bounce, Slide, toast } from 'react-toastify';
 import filterContext from '../store/filterContext';
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from 'axios';
-
-
 function ShopBagItem({
     game,
     title,

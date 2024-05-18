@@ -3,7 +3,7 @@ import Filters from './Filters'
 
 function CateApp() {
     return (
-        <div className='CateApp'>
+        <div>
             <Filters />
         </div>
     )
