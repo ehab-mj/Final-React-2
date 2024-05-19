@@ -1,14 +1,10 @@
 .slide-image-cover {
-    /* width: 100%;
-    overflow: hidden; */
-
     height: 100vh;
     width: 100vw;
     top: 0;
     left: 0;
     position: absolute;
     z-index: -1;
-    /* background-image: url("./img/g1.jpg"); */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -30,7 +26,6 @@
 .banner {
     margin-top: 0;
     padding: 260px 0 100px 0;
-    /* background-image: url('./img/banner-bg.png'); */
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;

@@ -5,7 +5,9 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import LoginContext from "../store/loginContext";
 import './GameDetailsCom.css'
 import './gameSlide.css'
-import './Test.css'
+import './GDetails1.css'
+import './GDetails2.css'
+import './GDetails3.css'
 import StarIcon from '@mui/icons-material/Star';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useHandleFavClick from "../hooks/useHandleFav";

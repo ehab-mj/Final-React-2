@@ -1,6 +1,6 @@
 import React from 'react'
 import './contact.css'
-
+import './contact2.css'
 
 
 const Contact = () => {
