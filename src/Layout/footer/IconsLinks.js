@@ -7,13 +7,14 @@ import StyleRoundedIcon from '@mui/icons-material/StyleRounded';
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import { BiSolidCrown } from "react-icons/bi";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const alwaysButtons = [
   {
     to: ROUTES.ABOUT, title: "About", icon: <FeedIcon />,
   },
 ];
 const loggedInButtons = [
-  { to: ROUTES.FAV, title: "Favorite", icon: <BookmarkRoundedIcon /> },
+  { to: ROUTES.CART, title: "Cart", icon: <ShoppingCartIcon /> },
 ];
 
 const bizButtons = [

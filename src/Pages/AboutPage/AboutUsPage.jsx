@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './About.css'
 import fuse from "./fuse.png";
+import Contact from "../ContactUs/Contact";
 const AboutUsPage = () => {
     return (
 
@@ -16,6 +17,7 @@ const AboutUsPage = () => {
                 </div>
             </div>
         </section>
+
     );
 };
 

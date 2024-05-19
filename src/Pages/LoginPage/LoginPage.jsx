@@ -29,7 +29,7 @@ import {
 
 
 const LoginPage = () => {
-  const { setLogin } = useContext(LoginContext);
+  const { login, setLogin } = useContext(LoginContext);
   const [emailValue, setEmailValue] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -37,6 +37,9 @@ const LoginPage = () => {
   const [remeber, SetRemeber] = useState(false);
   const [adminType, setAdminType] = useState(false);
   const navigate = useNavigate();
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [failedLoginAttempts, setFailedLoginAttempts] = useState(0);
+  const [checked, setChecked] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmailValue(e.target.value);
@@ -45,13 +48,46 @@ const LoginPage = () => {
     setPasswordValue(e.target.value);
   };
 
+  const handleUserLoginAttempts = async () => {
+    try {
+      const { data } = await axios.get("/users/" + login._id);
+      if (data.failedLoginAttempts >= 3) {
+        setIsBlocked(true);
+
+        const unblockTimer = setTimeout(() => {
+          setIsBlocked(false);
+          setFailedLoginAttempts(0);
+          data.failedLoginAttempts = 0;
+        }, 24 * 60 * 60 * 1000);
+        return () => clearTimeout(unblockTimer);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isBlocked) {
+      toast.error(
+        "Your account is temporarily locked. Try Later"
+      );
+      return;
+    }
     try {
       let { data } = await axios.post("/users/login", {
         email: emailValue,
         password: passwordValue,
       });
+
+      handleUserLoginAttempts();
+      if (!checked) {
+        localStorage.setItem("token", data);
+      } else {
+        sessionStorage.setItem("token", data);
+      }
+
       storeToken(data, remeber);
       const UserData = jwtDecode(data);
       const { isBusiness } = UserData;
@@ -110,10 +146,6 @@ const LoginPage = () => {
 
     <div className="container">
       <div className="w-full 2xl:w-2/5 gap-8 flex-colo p-8 sm:p-14 md:w-3/5 bg-dry  rounded-lg border border-border">
-
-        {/* <Typography component="h1" variant="h5">
-          Sign in
-        </Typography> */}
         <Box
           component="form"
           onSubmit={handleSubmit}
@@ -180,112 +212,6 @@ const LoginPage = () => {
           </Grid>
           <CopyrightComponent style={{ color: "#f15000" }} sx={{ mt: 5 }} />
         </Box>
-
-        {/* <Grid container component="main" sx={{ height: "100vh" }}>
-          <CssBaseline />
-          <Grid
-            item
-            xs={false}
-            sm={4}
-            md={7}
-            sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-
-
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-            <Box
-              sx={{
-                my: 8,
-                mx: 4,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Avatar sx={{ m: 1, bgcolor: "#1AA5B0" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
-              </Typography>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  value={emailValue}
-                  onChange={handleEmailChange}
-                  onBlur={handleEmailBlur}
-                />
-                {emailError && <Alert severity="error">{emailError}</Alert>}
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={passwordValue}
-                  onChange={handlePasswordChange}
-                  onBlur={handlePasswordBlur}
-                />
-                {passwordError && <Alert severity="error">{passwordError}</Alert>}
-                <FormControlLabel
-                  control={<Checkbox value="remember" style={{ color: "#1AA5B0" }} />}
-                  label="Remember me"
-                  onChange={handleremember}
-                  checked={remeber}
-                />
-                <Button style={{ background: "#1AA5B0", color: "white" }}
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  disabled={Boolean(emailError || passwordError)}
-                >
-                  Sign in
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link to={ROUTES.FORGETPASS} variant="body2"
-                      style={{ color: "#1AA5B0" }}>
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <Link to={ROUTES.REGISTER}
-                      style={{ color: "#1AA5B0" }}
-                    >
-                      {"Click this here to Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
-                <CopyrightComponent sx={{ mt: 5 }} />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid> */}
       </div>
     </div>
   );
