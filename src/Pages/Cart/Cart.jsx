@@ -183,7 +183,7 @@ const Cart = ({
         <Fragment>
             <div className="container-fluid">
                 <div className="row mb-3">
-                    <h1>My Bag</h1>
+                    <h1>My Cart</h1>
                 </div>
             </div>
             <div className="row">
