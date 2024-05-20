@@ -90,6 +90,25 @@ const GameDetailsComponent = ({
         fetchInfo();
     };
 
+    const handleBuyNow = () => {
+        try {
+            toast.success('You have bought this game', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+            });
+        } catch (error) {
+            if (!login) navigate(ROUTES.LOGIN);
+        }
+    };
+
+
     const handleEditClick = () => {
         onEdit(id);
     };
@@ -140,6 +159,7 @@ const GameDetailsComponent = ({
                         <Box className="T-Buy">
                             <button
                                 to={title}
+                                onClick={handleBuyNow}
                                 className="T-BuyClick"
                             >
                                 Buy Now
