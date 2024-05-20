@@ -18,7 +18,7 @@ function Bag({ games, reference }) {
         <section id="bag" className='bag' ref={reference}>
             <div className="container-fluid">
                 <div className="row mb-3">
-                    <h1>My Bag</h1>
+                    <h1>My Cart</h1>
                 </div>
             </div>
             {
